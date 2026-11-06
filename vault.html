@@ -5,18 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>My Application Vault · Water &amp; Environmental Engineering Opportunities</title>
 <meta name="description" content="Build your own application vault: save your details, education, experience and project story once, then generate a ready-to-paste application pack for any listing. Everything stays in your browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to the vault form</a>
 
+<nav class="topnav" aria-label="Main navigation">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html"><span class="icon" aria-hidden="true">💧</span> Opportunities Board</a>
+    <div class="nav-links">
+      <a href="index.html">Opportunities</a>
+      <a href="vault.html#applications">Saved Opportunities</a>
+      <a href="vault.html" class="active" aria-current="page">Application Vault</a>
+      <a href="index.html#about">About</a>
+    </div>
+  </div>
+</nav>
+
 <header class="site-header">
   <div class="wrap">
-    <p class="eyebrow">💧 Water Resources &amp; Environmental Engineering</p>
+    <p class="eyebrow">Water Resources &amp; Environmental Engineering</p>
     <h1>My Application Vault</h1>
     <p class="tagline">Fill in your details once. Then, on any listing, one tap builds an
     application pack you can paste straight into the application form.</p>
-    <p class="last-updated"><a class="header-link" href="index.html">← Back to the opportunities board</a></p>
   </div>
 </header>
 
@@ -28,6 +42,14 @@
     <strong>Export</strong> to download a backup file you keep yourself, and
     <strong>Import</strong> to restore it on another device. Clearing your browser data
     deletes the vault, so keep an export if it matters to you.</p>
+  </section>
+
+  <section id="applications" class="tracker" aria-labelledby="tracker-heading">
+    <h2 id="tracker-heading">Saved opportunities &amp; applications</h2>
+    <p class="section-note">Everything you bookmarked on the board appears here with its deadline.
+    Tap a step in the progress bar to update where you are with it. Like the vault, this list is
+    stored only in this browser.</p>
+    <div id="tracker-list"><p class="section-note">Loading your saved opportunities…</p></div>
   </section>
 
   <form id="vault-form" autocomplete="off">
