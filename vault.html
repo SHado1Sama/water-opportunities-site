@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Application Vault · Water &amp; Environmental Engineering Opportunities</title>
+<meta name="description" content="Build your own application vault: save your details, education, experience and project story once, then generate a ready-to-paste application pack for any listing. Everything stays in your browser.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the vault form</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <p class="eyebrow">💧 Water Resources &amp; Environmental Engineering</p>
+    <h1>My Application Vault</h1>
+    <p class="tagline">Fill in your details once. Then, on any listing, one tap builds an
+    application pack you can paste straight into the application form.</p>
+    <p class="last-updated"><a class="header-link" href="index.html">← Back to the opportunities board</a></p>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+  <section class="privacy-note" aria-label="Privacy">
+    <p><strong>Your data never leaves this browser.</strong> This page has no server and no
+    account. Everything you type is stored only in this browser on this device. Use
+    <strong>Export</strong> to download a backup file you keep yourself, and
+    <strong>Import</strong> to restore it on another device. Clearing your browser data
+    deletes the vault, so keep an export if it matters to you.</p>
+  </section>
+
+  <form id="vault-form" autocomplete="off">
+
+    <fieldset class="vault-block">
+      <legend>Personal details</legend>
+      <div class="grid2">
+        <label>Full name (as on your documents)
+          <input type="text" id="p-full_name"></label>
+        <label>Email
+          <input type="email" id="p-email"></label>
+        <label>Phone (with country code)
+          <input type="text" id="p-phone"></label>
+        <label>Date of birth
+          <input type="date" id="p-date_of_birth"></label>
+        <label>Gender
+          <input type="text" id="p-gender"></label>
+        <label>Marital status
+          <input type="text" id="p-marital_status"></label>
+        <label>Nationality
+          <input type="text" id="p-nationality"></label>
+        <label>Country of residence
+          <input type="text" id="p-country_of_residence"></label>
+        <label>Current city
+          <input type="text" id="p-current_city"></label>
+        <label>Current address
+          <input type="text" id="p-current_address"></label>
+        <label>Home / permanent address (if different)
+          <input type="text" id="p-home_address"></label>
+        <label>Passport or ID number (optional, stored only here)
+          <input type="text" id="p-passport_or_id"></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="vault-block">
+      <legend>Education</legend>
+      <div id="education-list"></div>
+      <button type="button" class="btn secondary" id="add-education">+ Add education entry</button>
+    </fieldset>
+
+    <fieldset class="vault-block">
+      <legend>Experience (jobs, internships, SIWES, projects)</legend>
+      <div id="experience-list"></div>
+      <button type="button" class="btn secondary" id="add-experience">+ Add experience entry</button>
+    </fieldset>
+
+    <fieldset class="vault-block">
+      <legend>Skills and languages</legend>
+      <label>Skills (comma separated, e.g. QGIS, HEC-HMS, Python, data analysis)
+        <input type="text" id="skills"></label>
+      <label>Languages (comma separated with level, e.g. English (fluent), Hausa (fluent))
+        <input type="text" id="languages"></label>
+      <div class="grid2">
+        <label>GitHub link
+          <input type="url" id="link-github" placeholder="https://github.com/you"></label>
+        <label>LinkedIn link
+          <input type="url" id="link-linkedin" placeholder="https://www.linkedin.com/in/you"></label>
+        <label>Portfolio / project link
+          <input type="url" id="link-portfolio" placeholder="https://…"></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="vault-block">
+      <legend>Your project story</legend>
+      <p class="section-note">Write your strongest project or experience as a short story,
+      in up to three framings. Application packs pick the framing that matches the listing,
+      and you can switch before copying. Aim for 150 to 220 words each.</p>
+      <label>Water framing (for water, WASH, sanitation, flood and irrigation roles)
+        <textarea id="story-water" rows="7"></textarea></label>
+      <label>Climate and energy framing (for climate, sustainability, energy and waste roles)
+        <textarea id="story-climate" rows="7"></textarea></label>
+      <label>Short generic framing (works anywhere, about 100 words)
+        <textarea id="story-generic" rows="5"></textarea></label>
+      <label>One-line version (for short answer boxes)
+        <input type="text" id="story-one_liner"></label>
+    </fieldset>
+
+    <div class="vault-actions">
+      <p id="save-state" class="save-state" role="status">Not saved yet</p>
+      <button type="button" class="btn" id="export-btn">Export vault (JSON)</button>
+      <label class="btn secondary file-btn">Import vault
+        <input type="file" id="import-file" accept="application/json,.json" hidden>
+      </label>
+      <button type="button" class="btn danger" id="clear-btn">Clear vault</button>
+    </div>
+
+  </form>
+
+  <section class="privacy-note" aria-label="How packs work">
+    <p><strong>How application packs work:</strong> go back to the
+    <a href="index.html">opportunities board</a>, open any listing and tap
+    <strong>Application pack</strong>. The pack is built from this vault on your device:
+    your details, your education and experience summaries, your skills, and the story
+    framing that fits that listing, each with its own copy button, plus a checklist of
+    documents to prepare. You still visit the employer's site and submit yourself.
+    Nothing here submits anything for you.</p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>The vault is a personal organiser. Always check the original listing before applying,
+    and never pay an application fee: legitimate employers and scholarship bodies do not charge them.</p>
+  </div>
+</footer>
+
+<script src="vault.js"></script>
+</body>
+</html>
