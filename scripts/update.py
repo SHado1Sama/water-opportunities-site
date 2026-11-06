@@ -169,6 +169,16 @@ def fetch_reliefweb(source):
 
 # ---------------------------------------------------------------- scoring
 
+def contains_keyword(text, keyword):
+    """Word-boundary keyword match.
+
+    Plain substring matching is too loose for short field words: 'wash'
+    matches inside 'Washington' (which is how a generic Washington D.C.
+    fellowship once scored as a WASH listing). Boundaries fix that while
+    multi-word phrases ('water resources') still match normally.
+    """
+    return re.search(r"\b" + re.escape(keyword) + r"\b", text) is not None
+
 AFRICAN_COUNTRIES = {
     "nigeria", "ghana", "kenya", "uganda", "tanzania", "ethiopia", "rwanda",
     "senegal", "mali", "burkina faso", "niger", "cameroon", "angola", "zambia",
@@ -228,10 +238,19 @@ def score_candidate(candidate, source, rules, today):
 
     # Hard rule: must be on-field — at least one strong keyword somewhere.
     strong = rules["field_keywords_strong"]
-    title_hits = [kw for kw in strong if kw in title]
-    desc_hits = [kw for kw in strong if kw in text and kw not in title]
+    title_hits = [kw for kw in strong if contains_keyword(title, kw)]
+    desc_hits = [kw for kw in strong
+                 if contains_keyword(text, kw) and kw not in title_hits]
     if not title_hits and not desc_hits:
         return None, "dropped: off-field (no strong field keyword)"
+
+    # Hard rule (added 2026-11-06 after a generic youth fellowship slipped
+    # through on description keywords alone): auto-added listings must carry
+    # a field keyword in the TITLE. Description matches alone are not enough.
+    if hard.get("auto_add_requires_title_keyword", True) and not title_hits:
+        gate_words = list(strong) + list(hard.get("title_gate_extra_keywords", []))
+        if not any(contains_keyword(title, kw) for kw in gate_words):
+            return None, "dropped: title gate (no field keyword in title)"
 
     score = 0
     if title_hits:
@@ -325,6 +344,7 @@ def collect_candidates(sources, rules, today):
             continue
 
         source_kept = 0
+        gate_drops = 0
         for raw in raw_items:
             if not raw.get("title") or not raw.get("link"):
                 continue
@@ -340,7 +360,11 @@ def collect_candidates(sources, rules, today):
                 f"{candidate['title']} {candidate['location']} {candidate['description']}",
                 source.get("region", "Global"))
             scored, details = score_candidate(candidate, source, rules, today)
-            if scored is None or scored < rules["hard_rules"]["min_score_to_keep"]:
+            if scored is None:
+                if isinstance(details, str) and "title gate" in details:
+                    gate_drops += 1
+                continue
+            if scored < rules["hard_rules"]["min_score_to_keep"]:
                 continue
             kept.append({
                 "id": slugify(candidate["title"]) + "-" + slugify(source["name"]),
@@ -367,7 +391,8 @@ def collect_candidates(sources, rules, today):
             })
             source_kept += 1
         report.append(f"- {name}: {origin} OK — {len(raw_items)} fetched, "
-                      f"{source_kept} kept after rules")
+                      f"{source_kept} kept after rules, "
+                      f"{gate_drops} dropped by title gate")
     return kept, report
 
 
