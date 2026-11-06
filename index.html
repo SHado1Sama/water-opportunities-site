@@ -19,6 +19,8 @@
     they actually fit you.</p>
     <p class="last-updated">Last updated: <span id="last-updated">loading…</span>
       <span id="listing-count" class="listing-count"></span></p>
+    <p class="vault-cta"><a class="header-link" href="vault.html">🗂️ My Application Vault:
+      save your details once, then build a ready-to-paste application pack for any listing →</a></p>
   </div>
 </header>
 
@@ -94,6 +96,18 @@
     Legitimate employers and scholarship bodies never charge application fees.</p>
   </div>
 </footer>
+
+<div id="pack-modal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="pack-title">
+  <div class="modal-card">
+    <button type="button" class="modal-close" id="pack-close" aria-label="Close application pack">✕</button>
+    <h2 id="pack-title">Application pack</h2>
+    <p id="pack-for" class="section-note"></p>
+    <div id="pack-body"></div>
+    <p class="section-note">Built on your device from your vault. Nothing here is sent anywhere,
+    and nothing is submitted for you: open the listing, paste each block where it belongs,
+    check everything, and submit it yourself.</p>
+  </div>
+</div>
 
 <script src="app.js"></script>
 </body>
