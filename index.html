@@ -5,35 +5,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Water &amp; Environmental Engineering Opportunities</title>
 <meta name="description" content="Internships, scholarships, fellowships, graduate-trainee schemes and jobs for water resources and environmental engineering students in Nigeria and Africa — refreshed automatically every day.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to opportunities</a>
 
+<nav class="topnav" aria-label="Main navigation">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html"><span class="icon" aria-hidden="true">💧</span> Opportunities Board</a>
+    <div class="nav-links">
+      <a href="index.html" class="active" aria-current="page">Opportunities</a>
+      <a href="vault.html#applications">Saved Opportunities</a>
+      <a href="vault.html">Application Vault</a>
+      <a href="#about">About</a>
+    </div>
+  </div>
+</nav>
+
 <header class="site-header">
   <div class="wrap">
-    <p class="eyebrow">💧 Water Resources &amp; Environmental Engineering</p>
-    <h1>Opportunities Board</h1>
-    <p class="tagline">Internships, scholarships and jobs for water &amp; environmental engineering
-    students in Nigeria — gathered from 30+ sources across the web and scored for how well
-    they actually fit you.</p>
+    <p class="eyebrow">Water Resources &amp; Environmental Engineering</p>
+    <h1>Find your next opportunity</h1>
+    <p class="tagline">Internships, scholarships, fellowships and jobs for water and environmental
+    engineering students and recent graduates in Nigeria and Africa, gathered from 30+ sources,
+    checked daily, and scored for how well they fit you.</p>
     <p class="last-updated">Last updated: <span id="last-updated">loading…</span>
       <span id="listing-count" class="listing-count"></span></p>
-    <p class="vault-cta"><a class="header-link" href="vault.html"><span class="icon" aria-hidden="true">🗂️</span> My Application Vault:
-      save your details once, then build a ready-to-paste application pack for any listing →</a></p>
   </div>
 </header>
 
 <main id="main" class="wrap">
 
-  <section class="controls" aria-label="Search and filter opportunities">
-    <div class="control">
-      <label for="search">Search</label>
-      <input id="search" type="search" placeholder="e.g. groundwater, WASH, Lagos, scholarship…"
+  <section class="controls" id="controls" aria-label="Search and filter opportunities">
+    <div class="control control-search">
+      <label for="search"><span class="icon" aria-hidden="true">🔍</span> Search opportunities</label>
+      <input id="search" type="search" placeholder="Try groundwater, WASH, Lagos, scholarship…"
              autocomplete="off">
     </div>
-    <div class="control">
-      <label for="filter-type">Type</label>
+    <button type="button" id="filters-toggle" class="filters-toggle" aria-expanded="false" aria-controls="controls">
+      <span class="icon" aria-hidden="true">⚙️</span> Filters <span id="filters-toggle-state">· show</span>
+    </button>
+    <div class="control optional">
+      <label for="filter-type"><span class="icon" aria-hidden="true">🏷️</span> Type</label>
       <select id="filter-type">
         <option value="all">All types</option>
         <option value="internship">Internships</option>
@@ -43,8 +59,8 @@
         <option value="graduate-trainee">Graduate Trainee</option>
       </select>
     </div>
-    <div class="control">
-      <label for="filter-region">Region</label>
+    <div class="control optional">
+      <label for="filter-region"><span class="icon" aria-hidden="true">🌍</span> Region</label>
       <select id="filter-region">
         <option value="all">All regions</option>
         <option value="Nigeria">Nigeria</option>
@@ -53,16 +69,56 @@
         <option value="Remote">Remote</option>
       </select>
     </div>
-    <div class="control">
-      <label for="sort">Sort by</label>
+    <div class="control optional">
+      <label for="filter-level"><span class="icon" aria-hidden="true">🎓</span> Level</label>
+      <select id="filter-level">
+        <option value="all">All levels</option>
+        <option value="student">Student</option>
+        <option value="graduate">Recent graduate</option>
+        <option value="entry">Entry level</option>
+        <option value="experienced">Experienced</option>
+      </select>
+    </div>
+    <div class="control optional">
+      <label for="filter-funding"><span class="icon" aria-hidden="true">💰</span> Funding</label>
+      <select id="filter-funding">
+        <option value="all">Any funding</option>
+        <option value="funded">Funded or paid</option>
+        <option value="unpaid">Unpaid or volunteer</option>
+        <option value="other">See listing</option>
+      </select>
+    </div>
+    <div class="control optional">
+      <label for="filter-deadline"><span class="icon" aria-hidden="true">⏰</span> Deadline</label>
+      <select id="filter-deadline">
+        <option value="all">Any deadline</option>
+        <option value="14">Closing in 14 days</option>
+        <option value="30">Closing in 30 days</option>
+        <option value="later">Later than 30 days</option>
+      </select>
+    </div>
+    <div class="control optional">
+      <label for="filter-mode"><span class="icon" aria-hidden="true">🏢</span> Work mode</label>
+      <select id="filter-mode">
+        <option value="all">Any mode</option>
+        <option value="remote">Remote</option>
+        <option value="onsite">On-site</option>
+      </select>
+    </div>
+    <div class="control optional">
+      <label for="sort"><span class="icon" aria-hidden="true">↕️</span> Sort by</label>
       <select id="sort">
         <option value="score">Match score</option>
         <option value="deadline">Deadline (soonest first)</option>
       </select>
     </div>
     <div class="control">
-      <label for="filter-saved">Bookmarks</label>
+      <label for="filter-saved"><span class="icon" aria-hidden="true">🔖</span> Bookmarks</label>
       <button type="button" id="filter-saved" class="saved-toggle" aria-pressed="false">☆ Saved only</button>
+    </div>
+    <div class="control">
+      <label for="clear-filters">Reset</label>
+      <button type="button" id="clear-filters" class="clear-btn" disabled>Clear all filters</button>
     </div>
   </section>
 
@@ -75,17 +131,39 @@
 
   <section aria-labelledby="all-heading">
     <h2 id="all-heading">All opportunities</h2>
+    <div id="loading-state" class="cards" aria-hidden="true">
+      <div class="card skeleton"><div class="sk-line w40"></div><div class="sk-line w80"></div><div class="sk-line w60"></div><div class="sk-line w90"></div></div>
+      <div class="card skeleton"><div class="sk-line w40"></div><div class="sk-line w80"></div><div class="sk-line w60"></div><div class="sk-line w90"></div></div>
+      <div class="card skeleton"><div class="sk-line w40"></div><div class="sk-line w80"></div><div class="sk-line w60"></div><div class="sk-line w90"></div></div>
+    </div>
     <div id="results" class="cards" aria-live="polite"></div>
     <div id="empty-state" class="empty" hidden>
+      <p class="empty-icon" aria-hidden="true">🔍</p>
       <p><strong>No opportunities match those filters.</strong></p>
-      <p>Try a broader search, or clear a filter — new listings arrive with every daily update.</p>
+      <p>Try a broader search term, or clear the filters to see everything again.
+      New listings arrive with every daily update.</p>
+      <button type="button" class="btn" id="empty-clear">Clear all filters</button>
     </div>
     <div id="load-error" class="empty" hidden>
-      <p><strong>Could not load the listings.</strong></p>
-      <p>The data file (<code>data/opportunities.json</code>) could not be fetched. If you opened
-      this file directly from disk, serve the folder instead, e.g.
-      <code>python3 -m http.server</code>, then reload.</p>
+      <p class="empty-icon" aria-hidden="true">⚠️</p>
+      <p><strong>We could not load the listings.</strong></p>
+      <p>Check your connection and try again. If the problem continues, the board's data file
+      may be temporarily unavailable.</p>
+      <button type="button" class="btn" id="error-retry">Try again</button>
     </div>
+  </section>
+
+  <section id="about" aria-labelledby="about-heading">
+    <h2 id="about-heading">About this board</h2>
+    <p class="section-note">This board tracks internships, scholarships, fellowships, graduate-trainee
+    schemes and jobs in water resources, environmental engineering, climate, sustainability, energy
+    and waste management. Every listing is scored under published rules for field fit, eligibility
+    for Nigeria-based students and recent graduates, and funding. The board refreshes itself daily,
+    and a manual sweep runs twice a week.</p>
+    <p class="section-note">Save the listings you like with the bookmark button, track them under
+    <a href="vault.html#applications">Saved Opportunities</a>, and use the
+    <a href="vault.html">Application Vault</a> to keep your details, documents checklist and project
+    story ready, so applying takes minutes instead of an evening of retyping.</p>
   </section>
 
 </main>
