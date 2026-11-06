@@ -1,0 +1,64 @@
+name: Update opportunities and deploy site
+
+# How this keeps itself alive: the auto-commit step below counts as
+# repository activity. That matters because GitHub automatically disables
+# scheduled workflows in public repositories after 60 days without
+# repository activity — as long as this workflow keeps committing fresh
+# data (and you use the repo occasionally), the daily schedule stays on.
+# If it is ever disabled, re-enable it from the Actions tab.
+
+on:
+  schedule:
+    # 06:00 UTC = 07:00 WAT (Lagos) every day
+    - cron: "0 6 * * *"
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+
+permissions:
+  contents: write   # let the updater commit refreshed data files
+  pages: write      # deploy to GitHub Pages
+  id-token: write   # required by actions/deploy-pages
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  update-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Fetch and score fresh opportunities
+        run: python3 scripts/update.py
+
+      - name: Commit data changes (if any)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/opportunities.json data/last_update.json
+          if git diff --cached --quiet; then
+            echo "No data changes — nothing to commit."
+          else
+            git commit -m "Auto-update opportunities"
+            git push
+          fi
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
