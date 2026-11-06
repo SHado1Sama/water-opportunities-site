@@ -150,6 +150,117 @@ function splitList(text) {
   return String(text || "").split(",").map(s => s.trim()).filter(Boolean);
 }
 
+/* ---- Saved opportunities & application tracker ---- */
+
+const SAVED_KEY = "wob_saved_v1";
+const TRACKER_KEY = "wob_tracker_v1";
+const STATUSES = ["Saved", "Preparing", "Applied", "Interview", "Outcome"];
+
+function loadIdSet(key) {
+  try {
+    const arr = JSON.parse(localStorage.getItem(key) || "[]");
+    return new Set(Array.isArray(arr) ? arr : []);
+  } catch (err) { return new Set(); }
+}
+function loadTracker() {
+  try {
+    const obj = JSON.parse(localStorage.getItem(TRACKER_KEY) || "{}");
+    return obj && typeof obj === "object" ? obj : {};
+  } catch (err) { return {}; }
+}
+function esc(value) {
+  return String(value == null ? "" : value)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+function tDaysLeft(deadline) {
+  if (!deadline) return null;
+  const due = new Date(deadline + "T23:59:59");
+  if (Number.isNaN(due.getTime())) return null;
+  const now = new Date();
+  return Math.round((due - new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 86400000);
+}
+function tFormatDate(deadline) {
+  const d = new Date(deadline + "T12:00:00");
+  if (Number.isNaN(d.getTime())) return deadline;
+  return d.toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
+}
+function tInitials(org) {
+  const words = String(org || "?").replace(/[^A-Za-z0-9 ]/g, " ").split(/\s+/).filter(Boolean);
+  const letterWords = words.filter(w => /^[A-Za-z]/.test(w));
+  if (letterWords.length >= 2) return (letterWords[0][0] + letterWords[1][0]).toUpperCase();
+  if (letterWords.length === 1) return letterWords[0].slice(0, 2).toUpperCase();
+  return words.length ? words[0].slice(0, 2).toUpperCase() : "?";
+}
+
+async function renderTracker() {
+  const host = document.getElementById("tracker-list");
+  if (!host) return;
+  const saved = loadIdSet(SAVED_KEY);
+  if (!saved.size) {
+    host.innerHTML = `<div class="empty"><p class="empty-icon" aria-hidden="true">🔖</p>
+      <p><strong>Nothing saved yet.</strong></p>
+      <p>Tap the bookmark on any listing on the <a href="index.html">opportunities board</a> and it will appear here with its deadline and your progress.</p></div>`;
+    return;
+  }
+  let items = [];
+  try {
+    const res = await fetch("data/opportunities.json");
+    if (res.ok) items = await res.json();
+  } catch (err) { /* fall through with empty items */ }
+  const tracker = loadTracker();
+  const mine = items.filter(i => saved.has(i.id))
+    .sort((a, b) => String(a.deadline || "9999").localeCompare(String(b.deadline || "9999")));
+  if (!mine.length) {
+    host.innerHTML = `<div class="empty"><p><strong>Your saved listings are no longer on the board.</strong></p>
+      <p>Listings are removed when they close. Your bookmarks stay saved in this browser in case a listing returns.</p></div>`;
+    return;
+  }
+  host.innerHTML = mine.map(item => {
+    const statusIdx = Math.min(Math.max(Number(tracker[item.id] || 0), 0), STATUSES.length - 1);
+    const days = tDaysLeft(item.deadline);
+    const dueCls = days !== null && days <= 7 && days >= 0 ? "due-chip urgent" : "due-chip";
+    const dueText = !item.deadline ? "Deadline: see listing"
+      : days === null ? `Closes ${tFormatDate(item.deadline)}`
+      : days < 0 ? `Closed ${tFormatDate(item.deadline)}`
+      : days === 0 ? `Closes today, ${tFormatDate(item.deadline)}`
+      : `Closes ${tFormatDate(item.deadline)} · ${days} day${days === 1 ? "" : "s"} left`;
+    const steps = STATUSES.map((s, i) =>
+      `<li><button type="button" class="step${i < statusIdx ? " done" : ""}${i === statusIdx ? " current" : ""}"
+        data-track="${esc(item.id)}" data-step="${i}" aria-label="Set status to ${s}">${s}</button></li>`).join("");
+    return `
+    <article class="tracker-row">
+      <div class="tracker-main">
+        <span class="org-avatar" aria-hidden="true">${esc(tInitials(item.organization))}</span>
+        <div class="tracker-info">
+          <h3><a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer">${esc(item.title)}</a></h3>
+          <p class="org">${esc(item.organization)}</p>
+          <p class="tracker-meta"><span class="${dueCls}"><span class="icon" aria-hidden="true">📅</span> ${esc(dueText)}</span>
+          <span class="status-badge status-${statusIdx}">${STATUSES[statusIdx]}</span></p>
+        </div>
+        <button type="button" class="btn secondary small" data-unsave="${esc(item.id)}">Remove</button>
+      </div>
+      <ol class="progress" aria-label="Application progress">${steps}</ol>
+    </article>`;
+  }).join("");
+  host.querySelectorAll("[data-track]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const t = loadTracker();
+      t[btn.getAttribute("data-track")] = Number(btn.getAttribute("data-step"));
+      localStorage.setItem(TRACKER_KEY, JSON.stringify(t));
+      renderTracker();
+    });
+  });
+  host.querySelectorAll("[data-unsave]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const s = loadIdSet(SAVED_KEY);
+      s.delete(btn.getAttribute("data-unsave"));
+      localStorage.setItem(SAVED_KEY, JSON.stringify(Array.from(s)));
+      renderTracker();
+    });
+  });
+}
+
 function init() {
   const vault = loadVault();
   fillForm(vault);
@@ -222,6 +333,8 @@ function init() {
     };
     reader.readAsText(file);
   });
+
+  renderTracker();
 
   document.getElementById("clear-btn").addEventListener("click", () => {
     if (!confirm("Clear your vault from this browser? Export first if you want a backup.")) return;
