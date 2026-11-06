@@ -4,7 +4,19 @@
 
 const BEST_MATCH_SCORE = 50; // mirrors config/rules.json thresholds.best_match
 
-const state = { items: [], query: "", type: "all", region: "all", sort: "score" };
+const SAVED_KEY = "wob_saved_v1";
+
+function loadSaved() {
+  try {
+    const raw = localStorage.getItem(SAVED_KEY);
+    const arr = raw ? JSON.parse(raw) : [];
+    return new Set(Array.isArray(arr) ? arr : []);
+  } catch (err) {
+    return new Set();
+  }
+}
+
+const state = { items: [], query: "", type: "all", region: "all", sort: "score", savedOnly: false, saved: loadSaved() };
 
 const els = {
   results: document.getElementById("results"),
@@ -18,6 +30,7 @@ const els = {
   type: document.getElementById("filter-type"),
   region: document.getElementById("filter-region"),
   sort: document.getElementById("sort"),
+  savedBtn: document.getElementById("filter-saved"),
 };
 
 function escapeHtml(value) {
@@ -70,15 +83,17 @@ function isSenior(item) {
   return text.includes("senior") || /[5-9]\s*\+?\s*years/.test(text);
 }
 
-function cardHtml(item) {
+function cardHtml(item, index) {
   const best = (item.score || 0) >= BEST_MATCH_SCORE;
   const senior = isSenior(item) ? `<span class="badge senior">Senior role</span>` : "";
   const score = typeof item.score === "number"
     ? `<span class="badge score" title="Match score under the board's rules">Match ${item.score}</span>` : "";
   const tags = (item.tags || []).length
     ? `<p class="meta">${item.tags.map(t => `#${escapeHtml(t)}`).join(" ")}</p>` : "";
+  const isSaved = state.saved.has(item.id);
+  const delay = Math.min((index || 0) * 45, 270);
   return `
-  <article class="card${best ? " best" : ""}">
+  <article class="card${best ? " best" : ""}" style="--d:${delay}ms">
     <div class="badges">
       <span class="badge type-${escapeHtml(item.type)}">${escapeHtml(typeLabel(item.type))}</span>
       ${score}${senior}
@@ -93,12 +108,14 @@ function cardHtml(item) {
     ${tags}
     <p class="card-actions">
       <a class="apply" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">View &amp; apply →</a>
-      <button type="button" class="pack-btn" data-pack="${escapeHtml(item.id)}">📋 Application pack</button>
+      <button type="button" class="pack-btn" data-pack="${escapeHtml(item.id)}"><span class="icon" aria-hidden="true">📋</span> Application pack</button>
+      <button type="button" class="save-btn${isSaved ? " saved" : ""}" data-save="${escapeHtml(item.id)}" aria-pressed="${isSaved}"><span class="icon" aria-hidden="true">${isSaved ? "★" : "☆"}</span> ${isSaved ? "Saved" : "Save"}</button>
     </p>
   </article>`;
 }
 
 function matches(item) {
+  if (state.savedOnly && !state.saved.has(item.id)) return false;
   if (state.type !== "all" && item.type !== state.type) return false;
   if (state.region !== "all" && item.region !== state.region) return false;
   if (state.query) {
@@ -127,16 +144,33 @@ function sorted(items) {
 
 function render() {
   const visible = sorted(state.items.filter(matches));
-  els.results.innerHTML = visible.map(cardHtml).join("");
+  els.results.innerHTML = visible.map((item, i) => cardHtml(item, i)).join("");
   els.empty.hidden = visible.length > 0;
 
-  const filtering = state.query || state.type !== "all" || state.region !== "all";
+  const filtering = state.query || state.type !== "all" || state.region !== "all" || state.savedOnly;
   const best = sorted(state.items.filter(i => (i.score || 0) >= BEST_MATCH_SCORE && matches(i)));
   els.bestSection.hidden = best.length === 0;
-  els.bestList.innerHTML = best.slice(0, 6).map(cardHtml).join("");
+  els.bestList.innerHTML = best.slice(0, 6).map((item, i) => cardHtml(item, i)).join("");
   els.count.textContent = filtering
     ? ` — showing ${visible.length} of ${state.items.length} listings`
     : ` — ${state.items.length} listings`;
+  els.count.classList.remove("pulse");
+  void els.count.offsetWidth;
+  els.count.classList.add("pulse");
+  if (els.savedBtn) {
+    els.savedBtn.textContent = state.saved.size
+      ? `${state.savedOnly ? "★" : "☆"} Saved only (${state.saved.size})`
+      : "☆ Saved only";
+    els.savedBtn.classList.toggle("active", state.savedOnly);
+    els.savedBtn.setAttribute("aria-pressed", String(state.savedOnly));
+  }
+}
+
+function toggleSave(id) {
+  if (state.saved.has(id)) state.saved.delete(id);
+  else state.saved.add(id);
+  try { localStorage.setItem(SAVED_KEY, JSON.stringify(Array.from(state.saved))); } catch (err) { /* storage full/blocked: keep in-memory state */ }
+  render();
 }
 
 async function init() {
@@ -340,6 +374,8 @@ function openPack(id) {
 function closePack() { packModal.hidden = true; }
 
 document.addEventListener("click", e => {
+  const saveBtn = e.target.closest("[data-save]");
+  if (saveBtn) { toggleSave(saveBtn.getAttribute("data-save")); return; }
   const btn = e.target.closest("[data-pack]");
   if (btn) openPack(btn.getAttribute("data-pack"));
 });
@@ -347,9 +383,17 @@ document.getElementById("pack-close").addEventListener("click", closePack);
 packModal.addEventListener("click", e => { if (e.target === packModal) closePack(); });
 document.addEventListener("keydown", e => { if (e.key === "Escape" && !packModal.hidden) closePack(); });
 
-els.search.addEventListener("input", e => { state.query = e.target.value.trim().toLowerCase(); render(); });
+let searchTimer = null;
+els.search.addEventListener("input", e => {
+  const value = e.target.value;
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => { state.query = value.trim().toLowerCase(); render(); }, 120);
+});
 els.type.addEventListener("change", e => { state.type = e.target.value; render(); });
 els.region.addEventListener("change", e => { state.region = e.target.value; render(); });
 els.sort.addEventListener("change", e => { state.sort = e.target.value; render(); });
+if (els.savedBtn) {
+  els.savedBtn.addEventListener("click", () => { state.savedOnly = !state.savedOnly; render(); });
+}
 
 init();
