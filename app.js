@@ -91,7 +91,10 @@ function cardHtml(item) {
     <p class="meta"><strong>Level:</strong> ${escapeHtml(item.experience || "See listing")}</p>
     <p class="summary">${escapeHtml(item.summary || "")}</p>
     ${tags}
-    <a class="apply" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">View &amp; apply →</a>
+    <p class="card-actions">
+      <a class="apply" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">View &amp; apply →</a>
+      <button type="button" class="pack-btn" data-pack="${escapeHtml(item.id)}">📋 Application pack</button>
+    </p>
   </article>`;
 }
 
@@ -162,6 +165,187 @@ async function init() {
   }
   render();
 }
+
+/* ---- Application packs (built on-device from the visitor's vault) ---- */
+
+const VAULT_KEY = "wob_vault_v1";
+const CLIMATE_WORDS = ["climate", "energy", "renewable", "sustainability", "sustainable", "carbon", "waste", "recycling", "solar", "environment"];
+const WATER_WORDS = ["water", "wash", "sanitation", "hygiene", "hydro", "irrigation", "groundwater", "flood", "borehole", "drainage", "watershed", "river"];
+
+function loadVault() {
+  try {
+    const raw = localStorage.getItem(VAULT_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (err) {
+    return null;
+  }
+}
+
+function vaultHasContent(v) {
+  if (!v) return false;
+  const p = v.personal || {};
+  return Boolean(p.full_name || p.email || (v.education || []).length || (v.experience || []).length ||
+    (v.stories && (v.stories.water || v.stories.climate || v.stories.generic)));
+}
+
+function pickStoryKey(vault, item) {
+  const text = [item.title, item.summary, (item.tags || []).join(" ")].join(" ").toLowerCase();
+  const count = words => words.reduce((n, w) => n + (text.includes(w) ? 1 : 0), 0);
+  const stories = vault.stories || {};
+  let key = count(CLIMATE_WORDS) > count(WATER_WORDS) ? "climate" : "water";
+  if (!stories[key]) key = key === "water" ? "climate" : "water";
+  if (!stories[key] && stories.generic) key = "generic";
+  return key;
+}
+
+function lines(pairs) {
+  return pairs.filter(([, val]) => val && String(val).trim()).map(([k, val]) => `${k}: ${val}`).join("\n");
+}
+
+function educationText(e) {
+  const head = [e.degree, e.field].filter(Boolean).join(", ");
+  const where = [e.institution, e.city, e.country].filter(Boolean).join(", ");
+  const when = [e.start, e.end].filter(Boolean).join(" to ");
+  return lines([
+    ["Qualification", head], ["Institution", where], ["Period", when],
+    ["Class / GPA", e.class_or_gpa], ["Final project", e.project_title],
+  ]);
+}
+
+function experienceText(x) {
+  const where = [x.organisation, x.city, x.country].filter(Boolean).join(", ");
+  const when = [x.start, x.end].filter(Boolean).join(" to ");
+  const sup = [x.supervisor_name, x.supervisor_phone, x.supervisor_email].filter(Boolean).join(", ");
+  return lines([
+    ["Role", x.title], ["Organisation", where], ["Period", when],
+    ["Paid", x.paid], ["Supervisor", sup], ["Duties and results", x.duties],
+  ]);
+}
+
+function buildPackBlocks(vault, item, storyKey) {
+  const p = vault.personal || {};
+  const blocks = [];
+  const personal = lines([
+    ["Full name", p.full_name], ["Email", p.email], ["Phone", p.phone],
+    ["Date of birth", p.date_of_birth], ["Gender", p.gender], ["Marital status", p.marital_status],
+    ["Nationality", p.nationality], ["Current city", p.current_city],
+    ["Current address", p.current_address], ["Home address", p.home_address],
+  ]);
+  if (personal) blocks.push({ title: "Personal details", text: personal });
+  (vault.education || []).forEach((e, i) => {
+    const t = educationText(e);
+    if (t) blocks.push({ title: `Education ${vault.education.length > 1 ? (i + 1) : ""}`.trim(), text: t });
+  });
+  (vault.experience || []).forEach((x, i) => {
+    const t = experienceText(x);
+    if (t) blocks.push({ title: `Experience ${vault.experience.length > 1 ? (i + 1) : ""}`.trim(), text: t });
+  });
+  const skills = vault.skills || [];
+  if (skills.length) {
+    const text = [item.title, item.summary, (item.tags || []).join(" ")].join(" ").toLowerCase();
+    const matched = skills.filter(s => text.includes(String(s).toLowerCase()));
+    const rest = skills.filter(s => !matched.includes(s));
+    blocks.push({
+      title: "Skills" + (matched.length ? " (best matches for this listing first)" : ""),
+      text: matched.concat(rest).join(", "),
+    });
+  }
+  const langs = (vault.languages || []).join(", ");
+  if (langs) blocks.push({ title: "Languages", text: langs });
+  const linksText = lines([
+    ["GitHub", vault.links && vault.links.github], ["LinkedIn", vault.links && vault.links.linkedin],
+    ["Portfolio", vault.links && vault.links.portfolio],
+  ]);
+  if (linksText) blocks.push({ title: "Links", text: linksText });
+  const story = (vault.stories || {})[storyKey];
+  if (story) {
+    blocks.push({
+      title: `Project story (${storyKey} framing)`,
+      text: story,
+      storySwitcher: true,
+    });
+  }
+  blocks.push({
+    title: "Before you apply, checklist",
+    text: [
+      `Deadline: ${item.deadline ? formatDate(item.deadline) : "see listing"}. Apply on the official listing page and keep proof of submission.`,
+      "CV or resume, updated and saved as PDF.",
+      "Cover letter, tailored to this organisation and role (your story block above is the core of it).",
+      "Degree certificate and transcript, if the listing asks for them.",
+      "Passport or national ID, if asked.",
+      "Referee or supervisor contact details, including email addresses.",
+      "Never pay an application fee. Legitimate employers and scholarship bodies do not charge them.",
+    ].map(s => "• " + s).join("\n"),
+  });
+  return blocks;
+}
+
+const packModal = document.getElementById("pack-modal");
+const packBody = document.getElementById("pack-body");
+const packFor = document.getElementById("pack-for");
+let packItem = null;
+
+function renderPack(storyKey) {
+  const vault = loadVault();
+  if (!vaultHasContent(vault)) {
+    packFor.textContent = "";
+    packBody.innerHTML = `<div class="pack-block"><p>Your vault is empty, so there is nothing to build a pack from yet.</p>
+      <p><a class="btn" href="vault.html">Build your vault first</a></p>
+      <p class="section-note">It takes a few minutes, you only do it once, and it stays in your browser.</p></div>`;
+    return;
+  }
+  packFor.textContent = `For: ${packItem.title} at ${packItem.organization}`;
+  const key = storyKey || pickStoryKey(vault, packItem);
+  packBody.innerHTML = buildPackBlocks(vault, packItem, key).map((b, i) => `
+    <div class="pack-block">
+      <div class="pack-head"><h3>${escapeHtml(b.title)}</h3>
+      ${b.storySwitcher ? `<label class="story-switch">Framing:
+        <select id="pack-story-key">
+          <option value="water"${key === "water" ? " selected" : ""}>Water</option>
+          <option value="climate"${key === "climate" ? " selected" : ""}>Climate &amp; energy</option>
+          <option value="generic"${key === "generic" ? " selected" : ""}>Generic</option>
+        </select></label>` : ""}
+      <button type="button" class="btn small" data-copy="${i}">Copy</button></div>
+      <pre class="pack-text">${escapeHtml(b.text)}</pre>
+    </div>`).join("");
+  packBody.querySelectorAll("[data-copy]").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const blocks = buildPackBlocks(vault, packItem, currentStoryKey());
+      const text = blocks[Number(btn.getAttribute("data-copy"))].text;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = "Copied ✓";
+      } catch (err) {
+        btn.textContent = "Select the text and copy";
+      }
+      setTimeout(() => { btn.textContent = "Copy"; }, 2000);
+    });
+  });
+  const sel = document.getElementById("pack-story-key");
+  if (sel) sel.addEventListener("change", () => renderPack(sel.value));
+}
+
+function currentStoryKey() {
+  const sel = document.getElementById("pack-story-key");
+  return sel ? sel.value : undefined;
+}
+
+function openPack(id) {
+  packItem = state.items.find(i => i.id === id);
+  if (!packItem) return;
+  renderPack();
+  packModal.hidden = false;
+  document.getElementById("pack-close").focus();
+}
+function closePack() { packModal.hidden = true; }
+
+document.addEventListener("click", e => {
+  const btn = e.target.closest("[data-pack]");
+  if (btn) openPack(btn.getAttribute("data-pack"));
+});
+document.getElementById("pack-close").addEventListener("click", closePack);
+packModal.addEventListener("click", e => { if (e.target === packModal) closePack(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !packModal.hidden) closePack(); });
 
 els.search.addEventListener("input", e => { state.query = e.target.value.trim().toLowerCase(); render(); });
 els.type.addEventListener("change", e => { state.type = e.target.value; render(); });
