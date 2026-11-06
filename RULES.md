@@ -22,7 +22,13 @@ A listing is **dropped immediately** if:
    to apply; fee-charging listings are a classic scam pattern.
 3. **It is off-field** — it contains none of the strong field keywords (below) in its
    title or description.
-4. **It is a duplicate** — same normalised title + organisation as another listing
+4. **It fails the title gate (auto-added listings only)** — an automatically found
+   listing must carry a field keyword in its **title** (the strong keywords below,
+   plus: water, environmental, Watsan, hydrologist, hydrogeologist, borehole).
+   Matching only in the description is not enough. This was added on 2026-11-06
+   after a generic youth fellowship slipped through on description keywords alone.
+   Hand-verified listings added by a person are not subject to this gate.
+5. **It is a duplicate** — same normalised title + organisation as another listing
    (the same job cross-posted to three boards appears once).
 
 ## Step 2 — Scoring (0–100)
