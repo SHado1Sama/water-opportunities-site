@@ -24,7 +24,8 @@ A listing is **dropped immediately** if:
    title or description.
 4. **It fails the title gate (auto-added listings only)** — an automatically found
    listing must carry a field keyword in its **title** (the strong keywords below,
-   plus: water, environmental, Watsan, hydrologist, hydrogeologist, borehole).
+   plus: water, environmental, Watsan, hydrologist, hydrogeologist, borehole,
+   climate, sustainability, energy, waste, renewable, recycling, carbon).
    Matching only in the description is not enough. This was added on 2026-11-06
    after a generic youth fellowship slipped through on description keywords alone.
    Hand-verified listings added by a person are not subject to this gate.
@@ -38,8 +39,11 @@ Survivors are scored on five things:
 ### Field relevance (biggest factor)
 Strong keywords: **water resources, hydrology, hydrogeology, groundwater, wastewater,
 WASH, sanitation, irrigation, environmental engineering, water engineering, flood
-management, water quality, water supply/management, climate adaptation (water),
-drainage, hydraulics, water treatment, sewage, river basin, watershed.**
+management, water quality, water supply/management, climate adaptation, climate
+change, climate resilience, renewable energy, clean energy, energy transition,
+waste management, solid waste, sustainability, drainage, hydraulics, water
+treatment, sewage, river basin, watershed.** (Climate, sustainability, energy and
+waste management were added on the owner's request, 2026-11-06.)
 A strong keyword in the **title** is worth 35 points; extra matches in the description
 add up to the keyword cap. This is why "WASH Specialist" outranks "Programme Officer"
 even at the same organisation.
