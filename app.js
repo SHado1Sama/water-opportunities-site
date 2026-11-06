@@ -16,7 +16,11 @@ function loadSaved() {
   }
 }
 
-const state = { items: [], query: "", type: "all", region: "all", sort: "score", savedOnly: false, saved: loadSaved() };
+const state = {
+  items: [], query: "", type: "all", region: "all", sort: "score",
+  level: "all", funding: "all", deadline: "all", mode: "all",
+  savedOnly: false, saved: loadSaved(),
+};
 
 const els = {
   results: document.getElementById("results"),
@@ -24,13 +28,23 @@ const els = {
   bestSection: document.getElementById("best-section"),
   empty: document.getElementById("empty-state"),
   error: document.getElementById("load-error"),
+  loading: document.getElementById("loading-state"),
   lastUpdated: document.getElementById("last-updated"),
   count: document.getElementById("listing-count"),
   search: document.getElementById("search"),
   type: document.getElementById("filter-type"),
   region: document.getElementById("filter-region"),
   sort: document.getElementById("sort"),
+  level: document.getElementById("filter-level"),
+  funding: document.getElementById("filter-funding"),
+  deadline: document.getElementById("filter-deadline"),
+  mode: document.getElementById("filter-mode"),
   savedBtn: document.getElementById("filter-saved"),
+  clearBtn: document.getElementById("clear-filters"),
+  emptyClear: document.getElementById("empty-clear"),
+  errorRetry: document.getElementById("error-retry"),
+  filtersToggle: document.getElementById("filters-toggle"),
+  controls: document.getElementById("controls"),
 };
 
 function escapeHtml(value) {
@@ -55,17 +69,56 @@ function formatDate(deadline) {
 }
 
 function deadlineHtml(item) {
-  if (!item.deadline) return `<span class="deadline">Deadline: see listing</span>`;
+  if (!item.deadline) return `<span class="due-chip"><span class="icon" aria-hidden="true">📅</span> Deadline: see listing</span>`;
   const days = daysLeft(item.deadline);
-  let label = `Deadline: ${formatDate(item.deadline)}`;
+  let label = `Closes ${formatDate(item.deadline)}`;
   if (days !== null) {
-    if (days < 0) label += " (closed)";
-    else if (days === 0) label += " — today!";
-    else if (days === 1) label += " — 1 day left";
-    else label += ` — ${days} days left`;
+    if (days < 0) label += " · closed";
+    else if (days === 0) label += " · today!";
+    else if (days === 1) label += " · 1 day left";
+    else label += ` · ${days} days left`;
   }
-  const cls = days !== null && days <= 7 && days >= 0 ? "deadline urgent" : "deadline";
-  return `<span class="${cls}">${escapeHtml(label)}</span>`;
+  const cls = days !== null && days <= 7 && days >= 0 ? "due-chip urgent" : "due-chip";
+  return `<span class="${cls}"><span class="icon" aria-hidden="true">📅</span> ${escapeHtml(label)}</span>`;
+}
+
+/* Derived facets: the data file has free-text level/funding/location, so the
+   Level, Funding and Mode filters classify each listing with simple rules. */
+function levelOf(item) {
+  const t = `${item.experience || ""} ${(item.tags || []).join(" ")}`.toLowerCase();
+  if (isSenior(item) || t.includes("experienced") || t.includes("professional")) return "experienced";
+  if (t.includes("student") || t.includes("undergraduate")) return "student";
+  if (t.includes("recent graduate") || t.includes("new graduate") || t.includes("master's entry") || t.includes("graduate")) return "graduate";
+  return "entry";
+}
+
+function fundingOf(item) {
+  const t = (item.funding || "").toLowerCase();
+  if (t.includes("unpaid") || t.includes("volunteer") || t.includes("no stipend")) return "unpaid";
+  if (t.includes("fund") || t.includes("paid") || t.includes("stipend") || t.includes("salary") || t.includes("scholarship") || t.includes("allowance")) return "funded";
+  return "other";
+}
+
+function modeOf(item) {
+  const t = `${item.location || ""} ${(item.tags || []).join(" ")} ${item.region || ""}`.toLowerCase();
+  return t.includes("remote") ? "remote" : "onsite";
+}
+
+function deadlineMatches(item) {
+  if (state.deadline === "all") return true;
+  const days = daysLeft(item.deadline);
+  if (days === null) return state.deadline === "later";
+  if (state.deadline === "14") return days >= 0 && days <= 14;
+  if (state.deadline === "30") return days >= 0 && days <= 30;
+  return days > 30;
+}
+
+function orgInitials(org) {
+  const words = String(org || "?").replace(/[^A-Za-z0-9 ]/g, " ").split(/\s+/).filter(Boolean);
+  const letterWords = words.filter(w => /^[A-Za-z]/.test(w));
+  if (letterWords.length >= 2) return (letterWords[0][0] + letterWords[1][0]).toUpperCase();
+  if (letterWords.length === 1) return letterWords[0].slice(0, 2).toUpperCase();
+  return words.length ? words[0].slice(0, 2).toUpperCase() : "?";
 }
 
 function typeLabel(type) {
@@ -94,22 +147,31 @@ function cardHtml(item, index) {
   const delay = Math.min((index || 0) * 45, 270);
   return `
   <article class="card${best ? " best" : ""}" style="--d:${delay}ms">
-    <div class="badges">
-      <span class="badge type-${escapeHtml(item.type)}">${escapeHtml(typeLabel(item.type))}</span>
-      ${score}${senior}
+    <div class="card-top">
+      <span class="org-avatar" aria-hidden="true">${escapeHtml(orgInitials(item.organization))}</span>
+      <div class="card-head">
+        <div class="badges">
+          <span class="badge type-${escapeHtml(item.type)}">${escapeHtml(typeLabel(item.type))}</span>
+          ${score}${senior}
+        </div>
+        <p class="org">${escapeHtml(item.organization)}</p>
+      </div>
+      <button type="button" class="bookmark-btn${isSaved ? " saved" : ""}" data-save="${escapeHtml(item.id)}"
+        aria-pressed="${isSaved}" aria-label="${isSaved ? "Remove bookmark for" : "Bookmark"} ${escapeHtml(item.title)}"
+        title="${isSaved ? "Saved. Tap to remove" : "Save this opportunity"}">${isSaved ? "🔖" : "📑"}</button>
     </div>
     <h3><a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)}</a></h3>
-    <p class="org">${escapeHtml(item.organization)}</p>
-    <p class="meta"><strong>Location:</strong> ${escapeHtml(item.location || "See listing")} ·
-      ${deadlineHtml(item)}</p>
-    <p class="meta"><strong>Funding:</strong> ${escapeHtml(item.funding || "See listing")}</p>
-    <p class="meta"><strong>Level:</strong> ${escapeHtml(item.experience || "See listing")}</p>
+    <p class="due-line">${deadlineHtml(item)}</p>
+    <div class="facts">
+      <p class="fact"><span class="icon" aria-hidden="true">📍</span> <strong>${escapeHtml(item.location || "See listing")}</strong></p>
+      <p class="fact"><span class="icon" aria-hidden="true">💰</span> ${escapeHtml(item.funding || "See listing")}</p>
+      <p class="fact"><span class="icon" aria-hidden="true">🎓</span> ${escapeHtml(item.experience || "See listing")}</p>
+    </div>
     <p class="summary">${escapeHtml(item.summary || "")}</p>
     ${tags}
     <p class="card-actions">
       <a class="apply" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">View &amp; apply →</a>
       <button type="button" class="pack-btn" data-pack="${escapeHtml(item.id)}"><span class="icon" aria-hidden="true">📋</span> Application pack</button>
-      <button type="button" class="save-btn${isSaved ? " saved" : ""}" data-save="${escapeHtml(item.id)}" aria-pressed="${isSaved}"><span class="icon" aria-hidden="true">${isSaved ? "★" : "☆"}</span> ${isSaved ? "Saved" : "Save"}</button>
     </p>
   </article>`;
 }
@@ -118,6 +180,10 @@ function matches(item) {
   if (state.savedOnly && !state.saved.has(item.id)) return false;
   if (state.type !== "all" && item.type !== state.type) return false;
   if (state.region !== "all" && item.region !== state.region) return false;
+  if (state.level !== "all" && levelOf(item) !== state.level) return false;
+  if (state.funding !== "all" && fundingOf(item) !== state.funding) return false;
+  if (state.mode !== "all" && modeOf(item) !== state.mode) return false;
+  if (!deadlineMatches(item)) return false;
   if (state.query) {
     const haystack = [item.title, item.organization, item.location, item.summary,
       item.eligibility, (item.tags || []).join(" ")].join(" ").toLowerCase();
@@ -147,7 +213,9 @@ function render() {
   els.results.innerHTML = visible.map((item, i) => cardHtml(item, i)).join("");
   els.empty.hidden = visible.length > 0;
 
-  const filtering = state.query || state.type !== "all" || state.region !== "all" || state.savedOnly;
+  const filtering = state.query || state.type !== "all" || state.region !== "all" || state.savedOnly ||
+    state.level !== "all" || state.funding !== "all" || state.deadline !== "all" || state.mode !== "all";
+  markActiveFilters();
   const best = sorted(state.items.filter(i => (i.score || 0) >= BEST_MATCH_SCORE && matches(i)));
   els.bestSection.hidden = best.length === 0;
   els.bestList.innerHTML = best.slice(0, 6).map((item, i) => cardHtml(item, i)).join("");
@@ -166,6 +234,43 @@ function render() {
   }
 }
 
+function activeFilterCount() {
+  let n = 0;
+  if (state.query) n += 1;
+  ["type", "region", "level", "funding", "deadline", "mode"].forEach(k => { if (state[k] !== "all") n += 1; });
+  if (state.savedOnly) n += 1;
+  return n;
+}
+
+function markActiveFilters() {
+  const pairs = [[els.type, state.type], [els.region, state.region], [els.level, state.level],
+    [els.funding, state.funding], [els.deadline, state.deadline], [els.mode, state.mode]];
+  pairs.forEach(([el, val]) => {
+    if (!el) return;
+    el.classList.toggle("active", val !== "all");
+    const wrap = el.closest(".control");
+    if (wrap) wrap.classList.toggle("active", val !== "all");
+  });
+  if (els.search) {
+    els.search.classList.toggle("active", Boolean(state.query));
+    const wrap = els.search.closest(".control");
+    if (wrap) wrap.classList.toggle("active", Boolean(state.query));
+  }
+  if (els.clearBtn) {
+    const n = activeFilterCount();
+    els.clearBtn.disabled = n === 0;
+    els.clearBtn.textContent = n ? `Clear all filters (${n})` : "Clear all filters";
+  }
+}
+
+function clearFilters() {
+  state.query = ""; state.type = "all"; state.region = "all"; state.level = "all";
+  state.funding = "all"; state.deadline = "all"; state.mode = "all"; state.savedOnly = false;
+  els.search.value = "";
+  [els.type, els.region, els.level, els.funding, els.deadline, els.mode].forEach(el => { if (el) el.value = "all"; });
+  render();
+}
+
 function toggleSave(id) {
   if (state.saved.has(id)) state.saved.delete(id);
   else state.saved.add(id);
@@ -179,11 +284,13 @@ async function init() {
     if (!res.ok) throw new Error("HTTP " + res.status);
     state.items = await res.json();
   } catch (err) {
+    if (els.loading) els.loading.hidden = true;
     els.error.hidden = false;
     els.bestSection.hidden = true;
     els.lastUpdated.textContent = "unavailable";
     return;
   }
+  if (els.loading) els.loading.hidden = true;
   try {
     const metaRes = await fetch("data/last_update.json");
     if (metaRes.ok) {
@@ -392,8 +499,23 @@ els.search.addEventListener("input", e => {
 els.type.addEventListener("change", e => { state.type = e.target.value; render(); });
 els.region.addEventListener("change", e => { state.region = e.target.value; render(); });
 els.sort.addEventListener("change", e => { state.sort = e.target.value; render(); });
+if (els.level) els.level.addEventListener("change", e => { state.level = e.target.value; render(); });
+if (els.funding) els.funding.addEventListener("change", e => { state.funding = e.target.value; render(); });
+if (els.deadline) els.deadline.addEventListener("change", e => { state.deadline = e.target.value; render(); });
+if (els.mode) els.mode.addEventListener("change", e => { state.mode = e.target.value; render(); });
 if (els.savedBtn) {
   els.savedBtn.addEventListener("click", () => { state.savedOnly = !state.savedOnly; render(); });
+}
+if (els.clearBtn) els.clearBtn.addEventListener("click", clearFilters);
+if (els.emptyClear) els.emptyClear.addEventListener("click", clearFilters);
+if (els.errorRetry) els.errorRetry.addEventListener("click", () => window.location.reload());
+if (els.filtersToggle && els.controls) {
+  els.filtersToggle.addEventListener("click", () => {
+    const open = els.controls.classList.toggle("open");
+    els.filtersToggle.setAttribute("aria-expanded", String(open));
+    const label = document.getElementById("filters-toggle-state");
+    if (label) label.textContent = open ? "· hide" : "· show";
+  });
 }
 
 init();
