@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Water &amp; Environmental Engineering Opportunities</title>
+<meta name="description" content="Internships, scholarships, fellowships, graduate-trainee schemes and jobs for water resources and environmental engineering students in Nigeria and Africa — refreshed automatically every day.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to opportunities</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <p class="eyebrow">💧 Water Resources &amp; Environmental Engineering</p>
+    <h1>Opportunities Board</h1>
+    <p class="tagline">Internships, scholarships and jobs for water &amp; environmental engineering
+    students in Nigeria — gathered from 30+ sources across the web and scored for how well
+    they actually fit you.</p>
+    <p class="last-updated">Last updated: <span id="last-updated">loading…</span>
+      <span id="listing-count" class="listing-count"></span></p>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+  <section class="controls" aria-label="Search and filter opportunities">
+    <div class="control">
+      <label for="search">Search</label>
+      <input id="search" type="search" placeholder="e.g. groundwater, WASH, Lagos, scholarship…"
+             autocomplete="off">
+    </div>
+    <div class="control">
+      <label for="filter-type">Type</label>
+      <select id="filter-type">
+        <option value="all">All types</option>
+        <option value="internship">Internships</option>
+        <option value="scholarship">Scholarships</option>
+        <option value="fellowship">Fellowships</option>
+        <option value="job">Jobs</option>
+        <option value="graduate-trainee">Graduate Trainee</option>
+      </select>
+    </div>
+    <div class="control">
+      <label for="filter-region">Region</label>
+      <select id="filter-region">
+        <option value="all">All regions</option>
+        <option value="Nigeria">Nigeria</option>
+        <option value="Africa">Africa</option>
+        <option value="Global">Global</option>
+        <option value="Remote">Remote</option>
+      </select>
+    </div>
+    <div class="control">
+      <label for="sort">Sort by</label>
+      <select id="sort">
+        <option value="score">Match score</option>
+        <option value="deadline">Deadline (soonest first)</option>
+      </select>
+    </div>
+  </section>
+
+  <section id="best-section" aria-labelledby="best-heading">
+    <h2 id="best-heading">⭐ Best matches</h2>
+    <p class="section-note">Scored 50+ under the board's rules: strong field fit, open to a
+    Nigeria-based student or recent graduate, and funded or paid.</p>
+    <div id="best-list" class="cards"></div>
+  </section>
+
+  <section aria-labelledby="all-heading">
+    <h2 id="all-heading">All opportunities</h2>
+    <div id="results" class="cards" aria-live="polite"></div>
+    <div id="empty-state" class="empty" hidden>
+      <p><strong>No opportunities match those filters.</strong></p>
+      <p>Try a broader search, or clear a filter — new listings arrive with every daily update.</p>
+    </div>
+    <div id="load-error" class="empty" hidden>
+      <p><strong>Could not load the listings.</strong></p>
+      <p>The data file (<code>data/opportunities.json</code>) could not be fetched. If you opened
+      this file directly from disk, serve the folder instead, e.g.
+      <code>python3 -m http.server</code>, then reload.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Updated automatically every day by a GitHub Actions workflow that checks the sources in
+    <code>data/sources.json</code> and applies the scoring rules in <code>config/rules.json</code>
+    (see <code>SOURCES.md</code> and <code>RULES.md</code> in the repository).</p>
+    <p><strong>Always check the original listing before applying</strong> — eligibility, deadlines
+    and locations can change, and a match score is a ranking aid, not a guarantee.
+    Legitimate employers and scholarship bodies never charge application fees.</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
