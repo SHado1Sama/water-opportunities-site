@@ -172,6 +172,7 @@ function cardHtml(item, index) {
     <p class="card-actions">
       <a class="apply" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">View &amp; apply →</a>
       <button type="button" class="pack-btn" data-pack="${escapeHtml(item.id)}"><span class="icon" aria-hidden="true">📋</span> Application pack</button>
+      <button type="button" class="muse-btn" data-muse="${escapeHtml(item.id)}"><span class="icon" aria-hidden="true">🤖</span> Apply with Muse</button>
     </p>
   </article>`;
 }
@@ -485,10 +486,129 @@ document.addEventListener("click", e => {
   if (saveBtn) { toggleSave(saveBtn.getAttribute("data-save")); return; }
   const btn = e.target.closest("[data-pack]");
   if (btn) openPack(btn.getAttribute("data-pack"));
+  const mBtn = e.target.closest("[data-muse]");
+  if (mBtn) openMuse(mBtn.getAttribute("data-muse"));
 });
 document.getElementById("pack-close").addEventListener("click", closePack);
 packModal.addEventListener("click", e => { if (e.target === packModal) closePack(); });
-document.addEventListener("keydown", e => { if (e.key === "Escape" && !packModal.hidden) closePack(); });
+document.addEventListener("keydown", e => {
+  if (e.key !== "Escape") return;
+  if (!packModal.hidden) closePack();
+  if (!museModal.hidden) closeMuse();
+});
+
+/* ---- Apply with Muse: a copy-ready brief for the visitor's own Muse agent ----
+   The site cannot talk to a visitor's agent directly, so it hands the visitor a
+   structured brief to paste into their own Muse. The brief carries the listing
+   plus the board's working rules: the agent prepares and fills, the human
+   cross-checks and submits. If the visitor has a site vault, the brief can
+   include their details so their agent does not have to ask for everything. */
+
+// New visitors can join Muse through this link. (Site owner: swap in your
+// personal Muse invite link here so sign-ups come through your board.)
+const MUSE_HOME_URL = "https://muse.ai";
+
+const museModal = document.getElementById("muse-modal");
+const museBody = document.getElementById("muse-body");
+const museFor = document.getElementById("muse-for");
+let museItem = null;
+
+function buildAgentBrief(item, vault) {
+  const parts = [];
+  parts.push("You are Muse, my personal AI assistant. I found this opportunity on the Water and Environmental Opportunities Board and I want you to help me apply for it. Work the careful way throughout: you prepare and fill, I review and submit.");
+  parts.push("");
+  parts.push("THE OPPORTUNITY");
+  parts.push(lines([
+    ["Title", item.title],
+    ["Organisation", item.organization],
+    ["Type", typeLabel(item.type)],
+    ["Location", item.location],
+    ["Funding", item.funding],
+    ["Deadline", item.deadline ? `${formatDate(item.deadline)} (${item.deadline})` : "see listing"],
+    ["Apply here", item.url],
+    ["About", item.summary],
+    ["Eligibility", item.eligibility],
+  ]));
+  parts.push("");
+  parts.push("HOW I WANT YOU TO HELP");
+  [
+    "Open the listing link and confirm it is still live and the deadline has not passed. Tell me the exact closing date.",
+    "Check my eligibility against the listing requirements using my details. Flag anything I do not meet or cannot prove yet, and ask me about gaps instead of guessing.",
+    "If I have not given you my details yet, collect them into an application vault I can reuse: full name, email, phone, date of birth, nationality, current and home addresses, education (institution, qualification, dates, class of degree, final year project), work and internship experience (organisation, role, dates, supervisor name, phone and email, duties), skills, languages, links, and a short project story.",
+    "Draft my application answers and cover letter from my real experience only. Never invent qualifications, employers, dates or results. Show me every draft before you use it.",
+    "When I say go, fill the application form with my details, then STOP before the final submit button and show me a summary of everything you entered. I will cross-check and submit it myself.",
+    "Track this application and remind me ahead of the deadline if I have not submitted.",
+  ].forEach((s, i) => parts.push(`${i + 1}. ${s}`));
+  parts.push("");
+  parts.push("RULES");
+  [
+    "Never pay any fee on my behalf and never enter my payment details. If the process asks for an application fee, stop and tell me: legitimate employers and scholarship bodies do not charge them.",
+    "Never click the final submit for me.",
+    "If anything about the listing looks like a scam, say so plainly.",
+  ].forEach(s => parts.push(`- ${s}`));
+  if (vault && vaultHasContent(vault)) {
+    parts.push("");
+    parts.push("MY DETAILS (from my application vault on the board; use these, and ask me only for what is missing)");
+    buildPackBlocks(vault, item, pickStoryKey(vault, item))
+      .filter(b => !b.title.startsWith("Before you apply"))
+      .forEach(b => { parts.push(""); parts.push(b.title.toUpperCase()); parts.push(b.text); });
+  }
+  return parts.join("\n");
+}
+
+function renderMuse() {
+  const vault = loadVault();
+  const hasVault = vaultHasContent(vault);
+  museFor.textContent = `For: ${museItem.title} at ${museItem.organization}`;
+  museBody.innerHTML = `
+    <ol class="muse-steps">
+      <li>Copy the brief below.</li>
+      <li>Open your Muse and paste it as a new message.</li>
+      <li>Your Muse checks the listing, drafts from your details, fills the form, and stops before submit so you cross-check and submit yourself.</li>
+    </ol>
+    ${hasVault
+      ? `<label class="muse-vault-toggle"><input type="checkbox" id="muse-include-vault" checked>
+           <span>Include my vault details in the brief (recommended: your Muse can start right away instead of asking for everything)</span></label>`
+      : `<p class="section-note">Tip: <a href="vault.html">build your free vault</a> on this site first and this brief can carry your details automatically.</p>`}
+    <div class="pack-block">
+      <div class="pack-head"><h3>Your agent brief</h3>
+        <button type="button" class="btn small" id="muse-copy">Copy brief</button>
+        <a class="btn small secondary" href="${MUSE_HOME_URL}" target="_blank" rel="noopener noreferrer">Open Muse</a>
+      </div>
+      <pre class="pack-text" id="muse-brief-text"></pre>
+    </div>
+    <p class="section-note">No Muse yet? <a href="${MUSE_HOME_URL}" target="_blank" rel="noopener noreferrer">Get Muse</a>, then come back and copy this brief.
+    The brief exists only in this tab and on your clipboard: this site sends nothing anywhere.</p>`;
+  const update = () => {
+    const cb = document.getElementById("muse-include-vault");
+    document.getElementById("muse-brief-text").textContent =
+      buildAgentBrief(museItem, cb && cb.checked ? vault : null);
+  };
+  update();
+  const cb = document.getElementById("muse-include-vault");
+  if (cb) cb.addEventListener("change", update);
+  const copyBtn = document.getElementById("muse-copy");
+  copyBtn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(document.getElementById("muse-brief-text").textContent);
+      copyBtn.textContent = "Copied ✓";
+    } catch (err) {
+      copyBtn.textContent = "Select the text and copy";
+    }
+    setTimeout(() => { copyBtn.textContent = "Copy brief"; }, 2000);
+  });
+}
+
+function openMuse(id) {
+  museItem = state.items.find(i => i.id === id);
+  if (!museItem) return;
+  renderMuse();
+  museModal.hidden = false;
+  document.getElementById("muse-close").focus();
+}
+function closeMuse() { museModal.hidden = true; }
+document.getElementById("muse-close").addEventListener("click", closeMuse);
+museModal.addEventListener("click", e => { if (e.target === museModal) closeMuse(); });
 
 let searchTimer = null;
 els.search.addEventListener("input", e => {
