@@ -247,6 +247,18 @@ h2::after { content: ""; flex: 1; height: 2px; border-radius: 2px;
   display: inline-flex; align-items: center; gap: .35rem;
 }
 .pack-btn:hover { background: #edf6ee; transform: translateY(-1px); }
+.muse-btn {
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .62rem 1.05rem; min-height: 44px; border-radius: 999px;
+  background: #eef2ff; color: #26356e; border: 1.5px solid #b9c4ee;
+  font-weight: 700; font-size: .93rem; cursor: pointer; box-shadow: var(--shadow-sm);
+  transition: transform .16s var(--ease), background .16s var(--ease);
+}
+.muse-btn:hover { background: #e0e7fb; transform: translateY(-1px); }
+.muse-steps { margin: .2rem 0 1rem; padding-left: 1.3rem; }
+.muse-steps li { margin-bottom: .35rem; }
+.muse-vault-toggle { display: flex; gap: .55rem; align-items: flex-start; font-weight: 600; font-size: .93rem; margin-bottom: 1rem; cursor: pointer; }
+.muse-vault-toggle input { width: 20px; height: 20px; margin-top: .1rem; flex: none; }
 .save-btn {
   background: #fff; color: var(--muted); border: 1px solid var(--line); font-weight: 600;
   padding: .52rem .85rem; border-radius: var(--radius-sm); cursor: pointer; font-size: .92rem; min-height: 44px;
