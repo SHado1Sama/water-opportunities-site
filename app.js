@@ -22,6 +22,29 @@ const state = {
   savedOnly: false, saved: loadSaved(),
 };
 
+/* Application tracker status (shared with vault.html, key wob_tracker_v1).
+   Cards show a badge once a saved listing moves past "Saved", so visitors
+   can see where each application stands while browsing the board. */
+const TRACKER_KEY = "wob_tracker_v1";
+const TRACKER_STATUSES = ["Saved", "Preparing", "Applied", "Interview", "Outcome"];
+function loadTracker() {
+  try {
+    const raw = localStorage.getItem(TRACKER_KEY);
+    const parsed = raw ? JSON.parse(raw) : {};
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch (err) {
+    return {};
+  }
+}
+function trackerBadge(item) {
+  if (!state.saved.has(item.id)) return "";
+  const idx = Math.min(Math.max(Number(loadTracker()[item.id] || 0), 0), TRACKER_STATUSES.length - 1);
+  if (idx === 0) return "";
+  const label = TRACKER_STATUSES[idx];
+  return `<span class="status-badge status-${idx}" title="Your application status for this listing, from Saved Opportunities">${idx === 2 ? "✓ " : ""}${label}</span>`;
+}
+
+
 const els = {
   results: document.getElementById("results"),
   bestList: document.getElementById("best-list"),
@@ -152,7 +175,7 @@ function cardHtml(item, index) {
       <div class="card-head">
         <div class="badges">
           <span class="badge type-${escapeHtml(item.type)}">${escapeHtml(typeLabel(item.type))}</span>
-          ${score}${senior}
+          ${score}${senior}${trackerBadge(item)}
         </div>
         <p class="org">${escapeHtml(item.organization)}</p>
       </div>
