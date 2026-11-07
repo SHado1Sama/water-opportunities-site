@@ -476,10 +476,11 @@ function openPack(id) {
   packItem = state.items.find(i => i.id === id);
   if (!packItem) return;
   renderPack();
-  packModal.hidden = false;
-  document.getElementById("pack-close").focus();
+  if (packModal) packModal.hidden = false;
+  const pc = document.getElementById("pack-close");
+  if (pc) pc.focus();
 }
-function closePack() { packModal.hidden = true; }
+function closePack() { if (packModal) packModal.hidden = true; }
 
 document.addEventListener("click", e => {
   const saveBtn = e.target.closest("[data-save]");
@@ -489,12 +490,13 @@ document.addEventListener("click", e => {
   const mBtn = e.target.closest("[data-muse]");
   if (mBtn) openMuse(mBtn.getAttribute("data-muse"));
 });
-document.getElementById("pack-close").addEventListener("click", closePack);
-packModal.addEventListener("click", e => { if (e.target === packModal) closePack(); });
+const packCloseBtn = document.getElementById("pack-close");
+if (packCloseBtn) packCloseBtn.addEventListener("click", closePack);
+if (packModal) packModal.addEventListener("click", e => { if (e.target === packModal) closePack(); });
 document.addEventListener("keydown", e => {
   if (e.key !== "Escape") return;
-  if (!packModal.hidden) closePack();
-  if (!museModal.hidden) closeMuse();
+  if (packModal && !packModal.hidden) closePack();
+  if (museModal && !museModal.hidden) closeMuse();
 });
 
 /* ---- Apply with Muse: a copy-ready brief for the visitor's own Muse agent ----
@@ -603,12 +605,14 @@ function openMuse(id) {
   museItem = state.items.find(i => i.id === id);
   if (!museItem) return;
   renderMuse();
-  museModal.hidden = false;
-  document.getElementById("muse-close").focus();
+  if (museModal) museModal.hidden = false;
+  const mc = document.getElementById("muse-close");
+  if (mc) mc.focus();
 }
-function closeMuse() { museModal.hidden = true; }
-document.getElementById("muse-close").addEventListener("click", closeMuse);
-museModal.addEventListener("click", e => { if (e.target === museModal) closeMuse(); });
+function closeMuse() { if (museModal) museModal.hidden = true; }
+const museCloseBtn = document.getElementById("muse-close");
+if (museCloseBtn) museCloseBtn.addEventListener("click", closeMuse);
+if (museModal) museModal.addEventListener("click", e => { if (e.target === museModal) closeMuse(); });
 
 let searchTimer = null;
 els.search.addEventListener("input", e => {
