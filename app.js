@@ -244,6 +244,14 @@ const TYPE_HEADINGS = {
   "job": "💼 Jobs",
   "course": "📚 Courses & Training",
 };
+const TYPE_SUBTITLES = {
+  "internship": "Placements and work experience in water, climate and environment.",
+  "scholarship": "Funded study in Nigeria, Africa and worldwide.",
+  "fellowship": "Funded programmes, cohorts and leadership schemes.",
+  "graduate-trainee": "Structured early-career schemes for recent graduates.",
+  "job": "Full-time roles in water, climate, energy and sustainability.",
+  "course": "Free courses and training, from field software to general water resources.",
+};
 function groupedHtml(items) {
   const groups = new Map();
   items.forEach(it => {
@@ -252,10 +260,12 @@ function groupedHtml(items) {
     groups.get(k).push(it);
   });
   return TYPE_ORDER.filter(k => groups.has(k)).map(k => `
-    <div class="type-group" id="group-${k}">
-      <h3 class="type-heading t-${k}">${TYPE_HEADINGS[k]} <span class="type-count">${groups.get(k).length}</span></h3>
+    <section class="type-group" id="group-${k}" aria-labelledby="heading-${k}">
+      <h3 class="type-heading t-${k}" id="heading-${k}">${TYPE_HEADINGS[k]} <span class="type-count">${groups.get(k).length} opportunities</span></h3>
+      <p class="type-sub">${TYPE_SUBTITLES[k]}</p>
       <div class="cards">${groups.get(k).map((item, i) => cardHtml(item, i)).join("")}</div>
-    </div>`).join("");
+      <a class="type-back" href="#all-heading">↑ Back to all categories</a>
+    </section>`).join("");
 }
 
 function render() {

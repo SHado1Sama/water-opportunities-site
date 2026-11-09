@@ -368,13 +368,17 @@ h2::after { content: ""; flex: 1; height: 2px; border-radius: 2px;
 .progress .step.done { background: #ddefe2; border-color: #a9cfae; color: var(--teal-dark); }
 .progress .step.current { background: var(--teal-dark); border-color: var(--teal-dark); color: #fff; font-weight: 700; }
 
-/* Grouped-by-type sections on the board */
-.type-group { margin-bottom: .6rem; scroll-margin-top: 88px; }
+/* Grouped-by-type sections on the board: each category is its own band,
+   separated by a full-width rule, so the grouping reads at a glance. */
+.type-group { margin: 2.4rem 0 0; padding-top: 1.7rem; border-top: 3px solid var(--line); scroll-margin-top: 88px; }
+.type-group:first-child { margin-top: .6rem; padding-top: 0; border-top: none; }
 .type-heading {
-  display: flex; align-items: center; gap: .55rem; font-size: 1.18rem; color: var(--deep);
-  margin: 1.3rem 0 .75rem; padding: .6rem .85rem; border-radius: 10px;
+  display: flex; align-items: center; gap: .55rem; font-size: 1.45rem; color: var(--deep);
+  margin: 0 0 .3rem; padding: .8rem 1rem; border-radius: 10px;
   background: #f2f7f2; border-left: 6px solid var(--teal);
 }
+.type-sub { color: var(--muted); margin: 0 0 1.1rem .2rem; }
+.type-back { display: inline-block; margin-top: 1.1rem; font-size: .9rem; font-weight: 600; }
 .type-heading.t-internship { border-left-color: #43a047; background: #eef6ee; }
 .type-heading.t-scholarship { border-left-color: #7b5ea7; background: #f3effa; }
 .type-heading.t-fellowship { border-left-color: #00897b; background: #e9f5f3; }
@@ -382,7 +386,7 @@ h2::after { content: ""; flex: 1; height: 2px; border-radius: 2px;
 .type-heading.t-job { border-left-color: #546e7a; background: #eff3f5; }
 .type-heading.t-course { border-left-color: #4456a8; background: #edf0fa; }
 .type-count { background: #fff; color: var(--deep); border: 1px solid var(--line); border-radius: 999px; padding: .1rem .6rem; font-size: .8rem; font-weight: 700; }
-.category-nav { display: flex; flex-wrap: wrap; gap: .5rem; margin: .35rem 0 .4rem; }
+.category-nav { display: flex; flex-wrap: wrap; gap: .5rem; margin: .35rem 0 .4rem; position: sticky; top: 0; z-index: 20; background: var(--bg); padding: .55rem 0; }
 .category-nav[hidden] { display: none; }
 .cat-chip {
   display: inline-flex; align-items: center; gap: .45rem;
