@@ -78,6 +78,31 @@
     "verified_date": "2026-11-06"
   },
   {
+    "deadline": "2026-11-12",
+    "eligibility": "Nationals or permanent residents of a Sub-Saharan African country with a bachelor's degree (at least Second Class Upper or equivalent, completed within the last 6 years); this award is tied to the MSc in Irrigation Engineering at LUANAR. For the In-Region track, applicants must be from a Sub-Saharan African country other than the host country (Malawi).",
+    "experience": "Recent graduate (Master's entry)",
+    "funding": "Funded (tuition and programme support for the normal duration of the Master's, usually up to 2 years)",
+    "id": "daad-in-country-in-region-luanar-irrigation-2027",
+    "location": "Lilongwe, Malawi (LUANAR)",
+    "manual": true,
+    "organization": "DAAD / Lilongwe University of Agriculture and Natural Resources (LUANAR)",
+    "region": "Africa",
+    "score": 88,
+    "source": "DAAD scholarship database (via GizPulse summary of the 2027 call)",
+    "summary": "DAAD In-Country/In-Region scholarship for the 2027 intake, attached to the MSc in Irrigation Engineering at LUANAR in Malawi - a direct water-resources fit. The DAAD portal closes 12 November 2026; check the programme's own call for its exact date.",
+    "tags": [
+      "irrigation",
+      "water resources",
+      "masters",
+      "fully funded",
+      "africa"
+    ],
+    "title": "DAAD In-Country/In-Region Scholarship — MSc Irrigation Engineering (LUANAR, Malawi)",
+    "type": "scholarship",
+    "url": "https://gizpulse.com/opportunities/daad-in-country-in-region-scholarship-africa-2027",
+    "verified_date": "2026-11-09"
+  },
+  {
     "deadline": "2026-11-09",
     "eligibility": "Minimum National Diploma in Water Engineering, Hydrology, Civil Engineering, Building or a related field, with at least 2 years' field experience (including supervising drilling and construction); fluency in Hausa and English.",
     "experience": "Entry level (National Diploma + 2 years' experience)",
@@ -130,6 +155,32 @@
     "verified_date": "2026-11-06"
   },
   {
+    "deadline": "2026-11-10",
+    "eligibility": "Young climate leaders aged 20-30 already active in climate policy, advocacy or entrepreneurship, with a specific initiative (policy proposal, campaign or venture); good command of English; available for the online phase (Dec 2026-Feb 2027) and the Brussels week (28 Feb-6 Mar 2027). Open worldwide; Nigeria is explicitly among the welcomed countries.",
+    "experience": "Young leaders (aged 20-30, already active in climate work)",
+    "funding": "Funded - travel, visa and accommodation costs for the Brussels week are covered by the programme",
+    "id": "ceps-climate-leadership-programme-2027",
+    "location": "Online (Dec 2026-Feb 2027) + Brussels, Belgium (28 Feb-6 Mar 2027)",
+    "manual": true,
+    "organization": "Centre for European Policy Studies (CEPS) / Heinrich-Böll-Stiftung",
+    "region": "Global",
+    "score": 85,
+    "source": "Official CEPS call for applications",
+    "summary": "Eight young climate leaders join a Dec 2026-Mar 2027 programme: online masterclasses on EU climate governance, diplomacy and policy writing, then a funded week in Brussels including the CEPS Ideas Lab (4-5 March 2027). Nigeria is explicitly welcomed; apply with a CV, reference letter and the application questionnaire by 10 November 2026, 23:59 CET.",
+    "tags": [
+      "climate",
+      "climate change",
+      "climate policy",
+      "fellowship",
+      "leadership",
+      "fully funded"
+    ],
+    "title": "CEPS / Heinrich Böll Stiftung Climate Leadership Programme 2027",
+    "type": "fellowship",
+    "url": "https://www.ceps.eu/ceps-news/call-for-applications-climate-leadership-programme/",
+    "verified_date": "2026-11-09"
+  },
+  {
     "deadline": "2026-11-15",
     "eligibility": "Postgraduate students, final-year bachelor's students, or graduates who can start within one year of graduating. Environmental, water-resource or development studies are desirable; English proficiency required.",
     "experience": "Student / recent graduate",
@@ -177,6 +228,32 @@
     "type": "job",
     "url": "https://www.hotnigerianjobs.com/hotjobs/973201/water-and-irrigation-engineer-at-kannyvic-enterpri.html",
     "verified_date": "2026-11-06"
+  },
+  {
+    "deadline": "2026-11-09",
+    "eligibility": "Degree/HND in Civil, Building Engineering/Technology, Geology or Construction Technology, with a minimum of 3 years of work and management experience; applied WASH project management skills, GIS/AutoCAD/EPANET, and INGO/humanitarian context experience.",
+    "experience": "Mid-level (3 years' management experience)",
+    "funding": "Paid job (salary - see listing)",
+    "id": "wash-deputy-program-manager-action-against-hunger-katsina",
+    "location": "Katsina, Nigeria",
+    "manual": true,
+    "organization": "Action Against Hunger",
+    "region": "Nigeria",
+    "score": 75,
+    "source": "Hot Nigerian Jobs",
+    "summary": "Deputy WASH programme manager in Katsina: shaping WASH strategy, supervising project implementation and reporting, and coordinating with partners across the mission. A management-level WASH post for someone with about three years' experience; closes 9 November 2026 at 5:00 pm WAT.",
+    "tags": [
+      "wash",
+      "sanitation",
+      "water quality",
+      "management",
+      "nigeria",
+      "job"
+    ],
+    "title": "WASH Deputy Program Manager",
+    "type": "job",
+    "url": "https://www.hotnigerianjobs.com/hotjobs/985108/wash-deputy-program-manager-at-action-against-hung.html",
+    "verified_date": "2026-11-09"
   },
   {
     "id": "energy-officer-ignite-energy-access",
