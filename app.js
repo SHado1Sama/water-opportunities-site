@@ -20,6 +20,7 @@ const state = {
   items: [], query: "", type: "all", region: "all", sort: "score",
   level: "all", funding: "all", deadline: "all", mode: "all",
   savedOnly: false, saved: loadSaved(),
+  category: "all", // category tab: "all" shows every section, otherwise only that one
 };
 
 /* Application tracker status (shared with vault.html, key wob_tracker_v1).
@@ -259,39 +260,45 @@ function groupedHtml(items) {
     if (!groups.has(k)) groups.set(k, []);
     groups.get(k).push(it);
   });
-  return TYPE_ORDER.filter(k => groups.has(k)).map(k => `
+  return TYPE_ORDER.filter(k => groups.has(k) && (state.category === "all" || k === state.category)).map(k => `
     <section class="type-group" id="group-${k}" aria-labelledby="heading-${k}">
       <h3 class="type-heading t-${k}" id="heading-${k}">${TYPE_HEADINGS[k]} <span class="type-count">${groups.get(k).length} opportunities</span></h3>
       <p class="type-sub">${TYPE_SUBTITLES[k]}</p>
       <div class="cards">${groups.get(k).map((item, i) => cardHtml(item, i)).join("")}</div>
-      <a class="type-back" href="#all-heading">↑ Back to all categories</a>
+      ${state.category === "all" ? "" : `<a class="type-back" href="#all-heading" data-cat-all>↑ Show all categories</a>`}
     </section>`).join("");
 }
 
 function render() {
   const visible = sorted(state.items.filter(matches));
+  const counts = {};
+  visible.forEach(it => {
+    const k = TYPE_ORDER.includes(it.type) ? it.type : "job";
+    counts[k] = (counts[k] || 0) + 1;
+  });
+  const keys = TYPE_ORDER.filter(k => counts[k]);
+  // If the selected category tab has no matches under the current filters,
+  // fall back to All so the board never shows a blank section area.
+  if (state.category !== "all" && !counts[state.category]) state.category = "all";
   els.results.innerHTML = groupedHtml(visible);
   if (els.catNav) {
-    const counts = {};
-    visible.forEach(it => {
-      const k = TYPE_ORDER.includes(it.type) ? it.type : "job";
-      counts[k] = (counts[k] || 0) + 1;
-    });
-    const keys = TYPE_ORDER.filter(k => counts[k]);
-    els.catNav.innerHTML = keys.map(k =>
-      `<button type="button" class="cat-chip" data-goto="group-${k}">${TYPE_HEADINGS[k]} <span class="cat-count">${counts[k]}</span></button>`).join("");
+    const allChip = `<button type="button" class="cat-chip${state.category === "all" ? " active" : ""}" data-cat="all" aria-pressed="${state.category === "all"}">All <span class="cat-count">${visible.length}</span></button>`;
+    els.catNav.innerHTML = allChip + keys.map(k =>
+      `<button type="button" class="cat-chip${state.category === k ? " active" : ""}" data-cat="${k}" aria-pressed="${state.category === k}">${TYPE_HEADINGS[k]} <span class="cat-count">${counts[k]}</span></button>`).join("");
     els.catNav.hidden = keys.length < 2;
   }
   els.empty.hidden = visible.length > 0;
 
+  const shownCount = state.category === "all" ? visible.length : (counts[state.category] || 0);
   const filtering = state.query || state.type !== "all" || state.region !== "all" || state.savedOnly ||
-    state.level !== "all" || state.funding !== "all" || state.deadline !== "all" || state.mode !== "all";
+    state.level !== "all" || state.funding !== "all" || state.deadline !== "all" || state.mode !== "all" ||
+    state.category !== "all";
   markActiveFilters();
   const best = sorted(state.items.filter(i => (i.score || 0) >= BEST_MATCH_SCORE && matches(i)));
   els.bestSection.hidden = best.length === 0;
   els.bestList.innerHTML = best.slice(0, 6).map((item, i) => cardHtml(item, i)).join("");
   els.count.textContent = filtering
-    ? ` — showing ${visible.length} of ${state.items.length} listings`
+    ? ` — showing ${shownCount} of ${state.items.length} listings`
     : ` — ${state.items.length} listings`;
   els.count.classList.remove("pulse");
   void els.count.offsetWidth;
@@ -310,6 +317,7 @@ function activeFilterCount() {
   if (state.query) n += 1;
   ["type", "region", "level", "funding", "deadline", "mode"].forEach(k => { if (state[k] !== "all") n += 1; });
   if (state.savedOnly) n += 1;
+  if (state.category !== "all") n += 1;
   return n;
 }
 
@@ -337,6 +345,7 @@ function markActiveFilters() {
 function clearFilters() {
   state.query = ""; state.type = "all"; state.region = "all"; state.level = "all";
   state.funding = "all"; state.deadline = "all"; state.mode = "all"; state.savedOnly = false;
+  state.category = "all";
   els.search.value = "";
   [els.type, els.region, els.level, els.funding, els.deadline, els.mode].forEach(el => { if (el) el.value = "all"; });
   render();
@@ -686,10 +695,20 @@ if (museModal) museModal.addEventListener("click", e => { if (e.target === museM
 
 if (els.catNav) {
   els.catNav.addEventListener("click", e => {
-    const chip = e.target.closest("[data-goto]");
+    const chip = e.target.closest("[data-cat]");
     if (!chip) return;
-    const target = document.getElementById(chip.getAttribute("data-goto"));
-    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    state.category = chip.getAttribute("data-cat") || "all";
+    render();
+    const heading = document.getElementById("all-heading");
+    if (heading) heading.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
+if (els.results) {
+  els.results.addEventListener("click", e => {
+    const back = e.target.closest("[data-cat-all]");
+    if (!back) return;
+    state.category = "all";
+    render();
   });
 }
 
@@ -723,4 +742,5 @@ if (els.filtersToggle && els.controls) {
 
 init();
 
-/* Board arranged by category with jump navigation (2026-11-09). */
+/* Board arranged by category with show/hide category tabs (2026-11-09):
+   starts on All; tapping a category shows only that section. */

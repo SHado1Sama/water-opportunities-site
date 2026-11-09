@@ -389,6 +389,8 @@ h2::after { content: ""; flex: 1; height: 2px; border-radius: 2px;
   font-weight: 700; font-size: .93rem; cursor: pointer; box-shadow: var(--shadow-sm);
 }
 .cat-chip:hover { background: #edf6ee; }
+.cat-chip.active { background: var(--teal-dark); border-color: var(--teal-dark); color: #fff; }
+.cat-chip.active .cat-count { background: #fff; color: var(--teal-dark); }
 .cat-count { background: var(--teal-dark); color: #fff; border-radius: 999px; padding: .05rem .5rem; font-size: .78rem; font-weight: 700; }
 
 /* Pack modal */
