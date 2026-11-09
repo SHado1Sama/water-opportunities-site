@@ -712,3 +712,5 @@ if (els.filtersToggle && els.controls) {
 }
 
 init();
+
+/* Board arranged by category with jump navigation (2026-11-09). */
