@@ -103,58 +103,6 @@
     "verified_date": "2026-11-09"
   },
   {
-    "deadline": "2026-11-09",
-    "eligibility": "Minimum National Diploma in Water Engineering, Hydrology, Civil Engineering, Building or a related field, with at least 2 years' field experience (including supervising drilling and construction); fluency in Hausa and English.",
-    "experience": "Entry level (National Diploma + 2 years' experience)",
-    "funding": "Paid job (salary — see listing)",
-    "id": "wash-technical-assistant-action-against-hunger-katsina",
-    "location": "Katsina, Nigeria",
-    "manual": true,
-    "organization": "Action Against Hunger",
-    "region": "Nigeria",
-    "score": 85,
-    "source": "Hot Nigerian Jobs",
-    "summary": "Field-based WASH role in Katsina supervising water and sanitation construction — technical assessments, water quality monitoring and chlorination, and capacity building for WASH committees. Direct water-engineering fit for a diploma holder; closes 9 November 2026.",
-    "tags": [
-      "wash",
-      "sanitation",
-      "water quality",
-      "water engineering",
-      "nigeria",
-      "job"
-    ],
-    "title": "WASH Technical Assistant",
-    "type": "job",
-    "url": "https://www.hotnigerianjobs.com/hotjobs/985118/wash-technical-assistant-at-action-against-hunger.html",
-    "verified_date": "2026-11-06"
-  },
-  {
-    "deadline": "2026-11-09",
-    "eligibility": "Degree/HND in Public Health, Health Education, Sociology, Rural Development or a related field, with 3 years' relevant experience in hygiene promotion; fluency in Hausa and English (Kanuri an advantage).",
-    "experience": "Mid-level (3 years' experience)",
-    "funding": "Paid job (salary — see listing)",
-    "id": "wash-hygiene-officer-action-against-hunger-katsina",
-    "location": "Katsina, Nigeria",
-    "manual": true,
-    "organization": "Action Against Hunger",
-    "region": "Nigeria",
-    "score": 85,
-    "source": "Hot Nigerian Jobs",
-    "summary": "WASH hygiene-promotion role in Katsina: public-health promotion campaigns, KAP surveys, hygiene training and NFI distributions across communities, schools and health facilities. More public-health than engineering, but a genuine Nigerian WASH post; closes 9 November 2026.",
-    "tags": [
-      "wash",
-      "sanitation",
-      "hygiene",
-      "public health",
-      "nigeria",
-      "job"
-    ],
-    "title": "WASH Hygiene Officer",
-    "type": "job",
-    "url": "https://www.hotnigerianjobs.com/hotjobs/985114/wash-hygiene-officer-at-action-against-hunger.html",
-    "verified_date": "2026-11-06"
-  },
-  {
     "deadline": "2026-11-10",
     "eligibility": "Young climate leaders aged 20-30 already active in climate policy, advocacy or entrepreneurship, with a specific initiative (policy proposal, campaign or venture); good command of English; available for the online phase (Dec 2026-Feb 2027) and the Brussels week (28 Feb-6 Mar 2027). Open worldwide; Nigeria is explicitly among the welcomed countries.",
     "experience": "Young leaders (aged 20-30, already active in climate work)",
@@ -178,6 +126,30 @@
     "title": "CEPS / Heinrich Böll Stiftung Climate Leadership Programme 2027",
     "type": "fellowship",
     "url": "https://www.ceps.eu/ceps-news/call-for-applications-climate-leadership-programme/",
+    "verified_date": "2026-11-09"
+  },
+  {
+    "id": "capnet-iwrm-climate-resilience-course-2026",
+    "title": "Integrated Water Resources Management (IWRM) for Climate Resilience, 2026 Edition",
+    "organization": "Cap-Net UNDP / UNEP-DHI Centre",
+    "type": "course",
+    "location": "Online",
+    "region": "Global",
+    "eligibility": "Open to water-sector learners worldwide; no nationality restriction.",
+    "deadline": "2026-11-15",
+    "url": "https://unepdhi.org/2026-edition-online-course-on-iwrm-for-climate-resilience/",
+    "source": "UNEP-DHI Centre (official course page)",
+    "funding": "Free (certificate included)",
+    "experience": "Intermediate",
+    "score": 85,
+    "summary": "Free, self-paced online course on integrating climate resilience into water resources planning and management, covering adaptation and mitigation technologies, planning frameworks and financing across five modules. A certificate from the course organisers is awarded on completion. Enrolment closes 15 November 2026.",
+    "tags": [
+      "iwrm",
+      "climate adaptation",
+      "water resources management",
+      "climate resilience"
+    ],
+    "manual": true,
     "verified_date": "2026-11-09"
   },
   {
@@ -205,6 +177,55 @@
     "verified_date": "2026-11-06"
   },
   {
+    "id": "qgis-official-training-manual",
+    "title": "QGIS Training Manual (Official Self-Study Course)",
+    "organization": "QGIS Project (QGIS.org)",
+    "type": "course",
+    "location": "Online",
+    "region": "Global",
+    "eligibility": "Open to everyone; completely free, no account needed.",
+    "deadline": null,
+    "url": "https://docs.qgis.org/3.44/en/docs/training_manual/index.html",
+    "source": "QGIS.org (official documentation)",
+    "funding": "Free (no certificate)",
+    "experience": "All levels",
+    "score": 82,
+    "summary": "The official, completely free QGIS training course: a structured, self-paced manual with exercises and worked answers covering map creation, vector and raster analysis, spatial databases and GIS processing, tiered for basic, intermediate and advanced users. The standard self-study route into the GIS software most widely used in water and environmental work.",
+    "tags": [
+      "qgis",
+      "gis",
+      "mapping",
+      "spatial analysis"
+    ],
+    "manual": true,
+    "verified_date": "2026-11-09"
+  },
+  {
+    "id": "ihe-delft-python-geospatial-wapor-mooc",
+    "title": "Python for Geospatial Analyses using WaPOR Data",
+    "organization": "IHE Delft Institute for Water Education (OpenCourseWare)",
+    "type": "course",
+    "location": "Online",
+    "region": "Global",
+    "eligibility": "Open to everyone worldwide; start any time.",
+    "deadline": null,
+    "url": "https://wateraccounting.un-ihe.org/en/mooc-python-geospatial-analyses-using-wapor-data-0",
+    "source": "IHE Delft OpenCourseWare (official course page)",
+    "funding": "Free (certificate included)",
+    "experience": "Beginner",
+    "score": 80,
+    "summary": "Free, self-paced beginner MOOC teaching Python scripting for spatial water data: command line and GDAL basics, an introduction to Python, and using Python libraries to download, aggregate and analyse FAO WaPOR remote-sensing data for agricultural water management. Certificate after completing all assignments.",
+    "tags": [
+      "python",
+      "gis",
+      "remote sensing",
+      "wapor",
+      "water productivity"
+    ],
+    "manual": true,
+    "verified_date": "2026-11-09"
+  },
+  {
     "deadline": "2026-11-12",
     "eligibility": "Bachelor's degree in Agricultural, Irrigation, Civil, Water or Environmental Engineering (or related), at least 4 years of relevant irrigation / hydraulic engineering experience; COREN registration is an advantage.",
     "experience": "Mid-level (4 years)",
@@ -230,29 +251,28 @@
     "verified_date": "2026-11-06"
   },
   {
-    "deadline": "2026-11-09",
-    "eligibility": "Degree/HND in Civil, Building Engineering/Technology, Geology or Construction Technology, with a minimum of 3 years of work and management experience; applied WASH project management skills, GIS/AutoCAD/EPANET, and INGO/humanitarian context experience.",
-    "experience": "Mid-level (3 years' management experience)",
-    "funding": "Paid job (salary - see listing)",
-    "id": "wash-deputy-program-manager-action-against-hunger-katsina",
-    "location": "Katsina, Nigeria",
-    "manual": true,
-    "organization": "Action Against Hunger",
-    "region": "Nigeria",
-    "score": 75,
-    "source": "Hot Nigerian Jobs",
-    "summary": "Deputy WASH programme manager in Katsina: shaping WASH strategy, supervising project implementation and reporting, and coordinating with partners across the mission. A management-level WASH post for someone with about three years' experience; closes 9 November 2026 at 5:00 pm WAT.",
+    "id": "ihe-delft-introduction-to-wapor-v3-course",
+    "title": "Introduction to WaPOR v3",
+    "organization": "IHE Delft Institute for Water Education (OpenCourseWare)",
+    "type": "course",
+    "location": "Online",
+    "region": "Global",
+    "eligibility": "Open to everyone worldwide through a free IHE Delft OpenCourseWare account, year-round.",
+    "deadline": null,
+    "url": "https://ocw.un-ihe.org/?lang=en",
+    "source": "IHE Delft OpenCourseWare (official course page)",
+    "funding": "Free",
+    "experience": "Beginner",
+    "score": 76,
+    "summary": "Free, self-paced beginner course (eight lessons) on FAO's WaPOR v3 portal: how to access and download remote-sensing data on water productivity and evapotranspiration, run downloads with Python, and do spatial analysis in GIS.",
     "tags": [
-      "wash",
-      "sanitation",
-      "water quality",
-      "management",
-      "nigeria",
-      "job"
+      "remote sensing",
+      "wapor",
+      "gis",
+      "water productivity",
+      "evapotranspiration"
     ],
-    "title": "WASH Deputy Program Manager",
-    "type": "job",
-    "url": "https://www.hotnigerianjobs.com/hotjobs/985108/wash-deputy-program-manager-at-action-against-hung.html",
+    "manual": true,
     "verified_date": "2026-11-09"
   },
   {
@@ -308,6 +328,54 @@
     "verified_date": "2026-11-06"
   },
   {
+    "id": "gwp-transboundary-freshwater-security-mooc",
+    "title": "Governance for Transboundary Freshwater Security (MOOC)",
+    "organization": "Global Water Partnership (GWP) / GEF IW:Learn, via SDG Academy",
+    "type": "course",
+    "location": "Online",
+    "region": "Global",
+    "eligibility": "Open to everyone; aimed especially at young professionals and students working on shared waters.",
+    "deadline": null,
+    "url": "https://gwpo-gwp.org/knowledge/courses-and-trainings/governance-for-transboundary-freshwater-security-mooc/",
+    "source": "Global Water Partnership (official course page)",
+    "funding": "Free (paid verified certificate on edX)",
+    "experience": "All levels",
+    "score": 74,
+    "summary": "Free, self-paced MOOC in six modules on governing shared rivers, lakes and aquifers, spanning international water law, water diplomacy, negotiation, institutions, management tools and sustainable finance. Directly relevant to shared basins such as the Niger and Lake Chad.",
+    "tags": [
+      "transboundary waters",
+      "water governance",
+      "water diplomacy",
+      "river basins"
+    ],
+    "manual": true,
+    "verified_date": "2026-11-09"
+  },
+  {
+    "id": "capnet-wefe-nexus-global-course",
+    "title": "Global Dimensions of the Water-Energy-Food-Ecosystems Nexus",
+    "organization": "Cap-Net UNDP / GWP Mediterranean / UNEP-DHI Centre",
+    "type": "course",
+    "location": "Online",
+    "region": "Global",
+    "eligibility": "Open to water-sector stakeholders worldwide.",
+    "deadline": null,
+    "url": "https://cap-net.org/wefe-global/",
+    "source": "Cap-Net UNDP (official course page)",
+    "funding": "Free (certificate included)",
+    "experience": "All levels",
+    "score": 72,
+    "summary": "Free, self-paced four-module course (about 4 hours per module) on understanding and applying Water-Energy-Food-Ecosystems Nexus approaches, with case studies from Africa, Asia, Europe, Latin America and the Middle East. Downloadable certificate on completion.",
+    "tags": [
+      "wefe nexus",
+      "water resources",
+      "climate change",
+      "sustainability"
+    ],
+    "manual": true,
+    "verified_date": "2026-11-09"
+  },
+  {
     "id": "unesco-sciences-internship-2026",
     "title": "UNESCO Sciences Internship 2026 (Climate, Sustainability & Science)",
     "organization": "UNESCO",
@@ -332,6 +400,30 @@
     "manual": true,
     "source": "Careers and Opportunities (apply via the official UNESCO careers site)",
     "verified_date": "2026-11-06"
+  },
+  {
+    "id": "siwi-water-addressing-global-crisis-course",
+    "title": "Water: Addressing the Global Crisis",
+    "organization": "SDG Academy / Stockholm International Water Institute (SIWI), via edX",
+    "type": "course",
+    "location": "Online",
+    "region": "Global",
+    "eligibility": "Open to everyone worldwide on edX.",
+    "deadline": null,
+    "url": "https://sdgacademy.org/course/water-addressing-global-crisis/",
+    "source": "SDG Academy (official course page)",
+    "funding": "Free (paid verified certificate optional)",
+    "experience": "All levels",
+    "score": 70,
+    "summary": "Self-paced MOOC on the global water crisis and SDG 6, covering water governance, climate change, ecosystems, WASH, transboundary waters and the water-energy-food nexus across nine modules at 3 to 5 hours per module. Course content is free to access at any time; only the optional verified certificate is paid.",
+    "tags": [
+      "sdg 6",
+      "water governance",
+      "wash",
+      "water resources"
+    ],
+    "manual": true,
+    "verified_date": "2026-11-09"
   },
   {
     "id": "officially-green-global-fellowship-2027",
@@ -360,32 +452,6 @@
     "verified_date": "2026-11-06"
   },
   {
-    "id": "recycling-officer-mirahub-nigeria",
-    "title": "Recycling Officer",
-    "organization": "Mirahub Limited",
-    "type": "job",
-    "region": "Nigeria",
-    "location": "Nationwide, Nigeria (remote, with field travel)",
-    "deadline": "2026-12-31",
-    "url": "https://cookuf.net/remote-recycling-officer-job-opportunity-across-nigeria-at-mirahub-limited/",
-    "summary": "Nationwide remote role on a mobile phone recycling programme: source and collect damaged phone panels from repair centres and dealers, onboard collection partners, keep inventory records and promote responsible electronic waste management.",
-    "eligibility": "Minimum SSCE, OND, HND or BSc in any discipline, open to candidates across Nigeria. Experience in field operations, recycling, logistics or sales is an advantage. Apply by email with the subject line 'Recycling Officer, [Your Location]'.",
-    "experience": "Entry level (experience an advantage, not required)",
-    "funding": "Paid (NGN 100,000/month plus performance incentives)",
-    "tags": [
-      "recycling",
-      "waste management",
-      "e-waste",
-      "remote",
-      "nigeria",
-      "job"
-    ],
-    "score": 66,
-    "manual": true,
-    "source": "Cookuf (employer advert, published 3 Nov 2026)",
-    "verified_date": "2026-11-06"
-  },
-  {
     "deadline": "2026-11-14",
     "eligibility": "Bachelor's degree in Environmental Science, Engineering or a related discipline, with 3–5 years' experience in sustainability / CSR implementation.",
     "experience": "Mid-level (3–5 years)",
@@ -411,18 +477,18 @@
     "verified_date": "2026-11-06"
   },
   {
-    "deadline": null,
-    "eligibility": "Master's degree in Public Health, Water and Sanitation, Environmental Engineering or a related field plus at least 5 years of professional WASH experience. A bachelor's in Civil / Water Resources / Environmental / Sanitary Engineering is an advantage. See listing for the closing date.",
+    "deadline": "2026-11-12",
+    "eligibility": "Master's degree in Public Health, Water and Sanitation, Environmental Engineering or a related field plus at least 5 years of professional WASH experience. A bachelor's in Civil / Water Resources / Environmental / Sanitary Engineering is an advantage.",
     "experience": "Senior (Master's + 5 years)",
     "funding": "Paid job (UN National Officer salary scale — see listing)",
     "id": "unicef-wash-specialist-lagos",
-    "location": "Lagos, Nigeria",
+    "location": "Kaduna, Nigeria",
     "manual": true,
     "organization": "UNICEF Nigeria",
     "region": "Nigeria",
     "score": 58,
-    "source": "NGOJobsite summary of the UNICEF vacancy (verify on UNICEF Careers)",
-    "summary": "WASH Specialist (NO-3) strengthening the evidence base and results orientation of UNICEF Nigeria's WASH programme, including oversight of the DGIS-funded ASWA III project. Kept on the board because it is a flagship Nigerian WASH role and a useful career target — but it is senior (Master's + 5 years), so it scores lower for a student audience.",
+    "source": "UNICEF Careers (official vacancy, Job no. 596824)",
+    "summary": "WASH Specialist (NO-3) on a Temporary Appointment (364 days), strengthening the evidence base and results orientation of UNICEF Nigeria's WASH programme, including oversight of the DGIS-funded ASWA III project. Duty station is Kaduna. Kept on the board because it is a flagship Nigerian WASH role and a useful career target, but it is senior (Master's + 5 years), so it scores lower for a student audience.",
     "tags": [
       "wash",
       "sanitation",
@@ -433,32 +499,7 @@
     ],
     "title": "WASH Specialist (NO-3)",
     "type": "job",
-    "url": "https://ngojobsite.com/wash-specialist-no-3-at-unicef-3/",
-    "verified_date": "2026-11-06"
-  },
-  {
-    "deadline": "2026-11-21",
-    "eligibility": "University degree, or currently pursuing an advanced degree, in engineering, environmental studies, development studies, environmental policy or a related field. Applicants must hold a residence/work permit for Denmark; French is desirable.",
-    "experience": "Student / recent graduate",
-    "funding": "Unpaid (UN internship — no financial remuneration)",
-    "id": "unep-ctcn-internship-copenhagen",
-    "location": "Copenhagen, Denmark (UNEP — Climate Technology Centre & Network)",
-    "manual": true,
-    "organization": "UNEP / CTCN",
-    "region": "Global",
-    "score": 44,
-    "source": "Career Bridge Africa summary of the UNEP vacancy",
-    "summary": "Six-month internship starting 7 January 2027 supporting coordination of climate-mitigation technical assistance in Africa. Strong UN brand and relevant environmental content, but it is unpaid and Copenhagen-based with a Danish residence/work-permit requirement — that restriction is why it scores lower for a Nigeria-based student.",
-    "tags": [
-      "environmental engineering",
-      "climate",
-      "internship",
-      "un",
-      "unpaid"
-    ],
-    "title": "UNEP CTCN Internship — Mitigation Support",
-    "type": "internship",
-    "url": "https://www.careerbridgeafrica.com/opportunity/ctcn-internship-mitigation-support-b2ec5e",
-    "verified_date": "2026-11-06"
+    "url": "https://jobs.unicef.org/en-us/job/596824/wash-specialist-no3-ta-364-days-138986kaduna-nigeria-wcar",
+    "verified_date": "2026-11-09"
   }
 ]
