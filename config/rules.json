@@ -214,6 +214,13 @@
       "master's",
       "phd funding",
       "fully funded master"
+    ],
+    "course": [
+      "course",
+      "mooc",
+      "short course",
+      "online training",
+      "training course"
     ]
   },
   "types": [
@@ -221,7 +228,8 @@
     "scholarship",
     "fellowship",
     "graduate-trainee",
-    "job"
+    "job",
+    "course"
   ],
   "version": 1
 }
