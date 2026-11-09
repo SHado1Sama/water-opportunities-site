@@ -151,6 +151,7 @@ function typeLabel(type) {
     "fellowship": "Fellowship",
     "graduate-trainee": "Graduate Trainee",
     "job": "Job",
+    "course": "Course",
   }[type] || type;
 }
 
@@ -193,7 +194,7 @@ function cardHtml(item, index) {
     <p class="summary">${escapeHtml(item.summary || "")}</p>
     ${tags}
     <p class="card-actions">
-      <a class="apply" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">View &amp; apply →</a>
+      <a class="apply" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${item.type === "course" ? "View course →" : "View &amp; apply →"}</a>
       <button type="button" class="pack-btn" data-pack="${escapeHtml(item.id)}"><span class="icon" aria-hidden="true">📋</span> Application pack</button>
       <button type="button" class="muse-btn" data-muse="${escapeHtml(item.id)}"><span class="icon" aria-hidden="true">🤖</span> Apply with Muse</button>
     </p>
@@ -232,9 +233,33 @@ function sorted(items) {
   return list;
 }
 
+/* The board is arranged by category: one section per opportunity type. */
+const TYPE_ORDER = ["internship", "scholarship", "fellowship", "graduate-trainee", "job", "course"];
+const TYPE_HEADINGS = {
+  "internship": "🌱 Internships",
+  "scholarship": "🎓 Scholarships",
+  "fellowship": "🤝 Fellowships",
+  "graduate-trainee": "🚀 Graduate Trainee",
+  "job": "💼 Jobs",
+  "course": "📚 Courses & Training",
+};
+function groupedHtml(items) {
+  const groups = new Map();
+  items.forEach(it => {
+    const k = TYPE_ORDER.includes(it.type) ? it.type : "job";
+    if (!groups.has(k)) groups.set(k, []);
+    groups.get(k).push(it);
+  });
+  return TYPE_ORDER.filter(k => groups.has(k)).map(k => `
+    <div class="type-group">
+      <h3 class="type-heading">${TYPE_HEADINGS[k]} <span class="type-count">${groups.get(k).length}</span></h3>
+      <div class="cards">${groups.get(k).map((item, i) => cardHtml(item, i)).join("")}</div>
+    </div>`).join("");
+}
+
 function render() {
   const visible = sorted(state.items.filter(matches));
-  els.results.innerHTML = visible.map((item, i) => cardHtml(item, i)).join("");
+  els.results.innerHTML = groupedHtml(visible);
   els.empty.hidden = visible.length > 0;
 
   const filtering = state.query || state.type !== "all" || state.region !== "all" || state.savedOnly ||
