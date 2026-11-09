@@ -369,9 +369,29 @@ h2::after { content: ""; flex: 1; height: 2px; border-radius: 2px;
 .progress .step.current { background: var(--teal-dark); border-color: var(--teal-dark); color: #fff; font-weight: 700; }
 
 /* Grouped-by-type sections on the board */
-.type-group { margin-bottom: .6rem; }
-.type-heading { display: flex; align-items: center; gap: .55rem; font-size: 1.14rem; color: var(--deep); margin: 1.15rem 0 .7rem; }
-.type-count { background: #ddefe2; color: var(--teal-dark); border-radius: 999px; padding: .1rem .6rem; font-size: .8rem; font-weight: 700; }
+.type-group { margin-bottom: .6rem; scroll-margin-top: 88px; }
+.type-heading {
+  display: flex; align-items: center; gap: .55rem; font-size: 1.18rem; color: var(--deep);
+  margin: 1.3rem 0 .75rem; padding: .6rem .85rem; border-radius: 10px;
+  background: #f2f7f2; border-left: 6px solid var(--teal);
+}
+.type-heading.t-internship { border-left-color: #43a047; background: #eef6ee; }
+.type-heading.t-scholarship { border-left-color: #7b5ea7; background: #f3effa; }
+.type-heading.t-fellowship { border-left-color: #00897b; background: #e9f5f3; }
+.type-heading.t-graduate-trainee { border-left-color: #ef8f2c; background: #fdf3e7; }
+.type-heading.t-job { border-left-color: #546e7a; background: #eff3f5; }
+.type-heading.t-course { border-left-color: #4456a8; background: #edf0fa; }
+.type-count { background: #fff; color: var(--deep); border: 1px solid var(--line); border-radius: 999px; padding: .1rem .6rem; font-size: .8rem; font-weight: 700; }
+.category-nav { display: flex; flex-wrap: wrap; gap: .5rem; margin: .35rem 0 .4rem; }
+.category-nav[hidden] { display: none; }
+.cat-chip {
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .55rem .95rem; min-height: 44px; border-radius: 999px;
+  background: #fff; border: 1.5px solid var(--teal); color: var(--deep);
+  font-weight: 700; font-size: .93rem; cursor: pointer; box-shadow: var(--shadow-sm);
+}
+.cat-chip:hover { background: #edf6ee; }
+.cat-count { background: var(--teal-dark); color: #fff; border-radius: 999px; padding: .05rem .5rem; font-size: .78rem; font-weight: 700; }
 
 /* Pack modal */
 .modal {
