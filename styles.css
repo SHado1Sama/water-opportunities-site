@@ -368,6 +368,11 @@ h2::after { content: ""; flex: 1; height: 2px; border-radius: 2px;
 .progress .step.done { background: #ddefe2; border-color: #a9cfae; color: var(--teal-dark); }
 .progress .step.current { background: var(--teal-dark); border-color: var(--teal-dark); color: #fff; font-weight: 700; }
 
+/* Grouped-by-type sections on the board */
+.type-group { margin-bottom: .6rem; }
+.type-heading { display: flex; align-items: center; gap: .55rem; font-size: 1.14rem; color: var(--deep); margin: 1.15rem 0 .7rem; }
+.type-count { background: #ddefe2; color: var(--teal-dark); border-radius: 999px; padding: .1rem .6rem; font-size: .8rem; font-weight: 700; }
+
 /* Pack modal */
 .modal {
   position: fixed; inset: 0; background: rgba(8, 42, 25, .55);
