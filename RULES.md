@@ -11,6 +11,13 @@ studying, in final year, a recent graduate, or early-career. Every rule below fo
 from that: a perfect-fit paid internship in Lagos should outrank a brilliant senior
 role in Houston that needs US work authorisation, every time.
 
+The board carries six kinds of opportunity: internships, scholarships, fellowships,
+graduate-trainee schemes, jobs, and **free courses and training** (added 2026-11-09
+at the owner's request: software courses for the tools of the field, such as QGIS,
+HEC-HMS and HEC-RAS, and general water resources and environmental courses). A course
+is only listed if the learning content itself is genuinely free; a paid optional
+certificate is acceptable only when that is stated on the card.
+
 ## Step 1 — Hard rules (no points, just in or out)
 
 A listing is **dropped immediately** if:
