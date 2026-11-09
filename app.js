@@ -47,6 +47,7 @@ function trackerBadge(item) {
 
 const els = {
   results: document.getElementById("results"),
+  catNav: document.getElementById("category-nav"),
   bestList: document.getElementById("best-list"),
   bestSection: document.getElementById("best-section"),
   empty: document.getElementById("empty-state"),
@@ -251,8 +252,8 @@ function groupedHtml(items) {
     groups.get(k).push(it);
   });
   return TYPE_ORDER.filter(k => groups.has(k)).map(k => `
-    <div class="type-group">
-      <h3 class="type-heading">${TYPE_HEADINGS[k]} <span class="type-count">${groups.get(k).length}</span></h3>
+    <div class="type-group" id="group-${k}">
+      <h3 class="type-heading t-${k}">${TYPE_HEADINGS[k]} <span class="type-count">${groups.get(k).length}</span></h3>
       <div class="cards">${groups.get(k).map((item, i) => cardHtml(item, i)).join("")}</div>
     </div>`).join("");
 }
@@ -260,6 +261,17 @@ function groupedHtml(items) {
 function render() {
   const visible = sorted(state.items.filter(matches));
   els.results.innerHTML = groupedHtml(visible);
+  if (els.catNav) {
+    const counts = {};
+    visible.forEach(it => {
+      const k = TYPE_ORDER.includes(it.type) ? it.type : "job";
+      counts[k] = (counts[k] || 0) + 1;
+    });
+    const keys = TYPE_ORDER.filter(k => counts[k]);
+    els.catNav.innerHTML = keys.map(k =>
+      `<button type="button" class="cat-chip" data-goto="group-${k}">${TYPE_HEADINGS[k]} <span class="cat-count">${counts[k]}</span></button>`).join("");
+    els.catNav.hidden = keys.length < 2;
+  }
   els.empty.hidden = visible.length > 0;
 
   const filtering = state.query || state.type !== "all" || state.region !== "all" || state.savedOnly ||
@@ -661,6 +673,15 @@ function closeMuse() { if (museModal) museModal.hidden = true; }
 const museCloseBtn = document.getElementById("muse-close");
 if (museCloseBtn) museCloseBtn.addEventListener("click", closeMuse);
 if (museModal) museModal.addEventListener("click", e => { if (e.target === museModal) closeMuse(); });
+
+if (els.catNav) {
+  els.catNav.addEventListener("click", e => {
+    const chip = e.target.closest("[data-goto]");
+    if (!chip) return;
+    const target = document.getElementById(chip.getAttribute("data-goto"));
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
 
 let searchTimer = null;
 els.search.addEventListener("input", e => {
