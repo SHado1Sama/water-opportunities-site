@@ -30,7 +30,14 @@
     "water treatment",
     "sewage",
     "river basin",
-    "watershed"
+    "watershed",
+    "flood forecasting",
+    "early warning",
+    "dam safety",
+    "environmental impact assessment",
+    "water utility",
+    "effluent",
+    "water research"
   ],
   "hard_rules": {
     "application_fee_phrases": [
@@ -231,5 +238,16 @@
     "job",
     "course"
   ],
-  "version": 1
+  "version": 1,
+  "niches": [
+    "design and construction engineering (dams, reservoirs, drainage, irrigation schemes, water networks)",
+    "government and agency roles (ministries, NIHSA, river basin authorities, state water boards and corporations)",
+    "WASH and humanitarian delivery",
+    "hydrology, flood forecasting and early warning",
+    "environmental compliance, EIA and pollution control",
+    "water and wastewater treatment, industrial and utility operations",
+    "research institutes and academia (IWMI, IITA, universities)",
+    "climate adaptation and resilience programmes"
+  ],
+  "evidence_standard": "Widened at the owner's instruction 2026-11-11: a listing may be added whenever a credible public record shows the opening exists (an official advert, an established job board carrying the full advert, an employer's own page, or a state portal). The sweep no longer requires the employer's own advert as the only acceptable evidence. Restrictions found in the advert (indigene-only, COREN, years of experience, nationality) must be written on the card, never used as a silent reason to drop a real opening. Still dropped: fee-charging listings, expired listings, and anything whose existence cannot be traced to a public record."
 }
