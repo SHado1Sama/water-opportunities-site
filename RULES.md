@@ -18,6 +18,27 @@ HEC-HMS and HEC-RAS, and general water resources and environmental courses). A c
 is only listed if the learning content itself is genuinely free; a paid optional
 certificate is acceptable only when that is stated on the card.
 
+## What counts as evidence, and which niches the board hunts (2026-11-11)
+
+The owner widened the evidence standard on 2026-11-11: **if a credible public record
+shows an opening exists, it can be listed.** An official advert is best, but an
+established job board carrying the full advert (Jobberman, MyJobMag, Hot Nigerian
+Jobs and similar), an employer's own page, or a government/state portal all count.
+Listings are no longer dropped just because the employer's own advert is hard to
+reach. In exchange, any restriction found in the advert (indigene-only, COREN
+registration, years of experience, nationality limits) must be written on the card
+itself, never left for applicants to discover later. Fee-charging listings, expired
+listings, and anything that cannot be traced to a public record are still dropped.
+
+The hunt also covers **all the niches a water resources and environmental engineer
+actually works in**, for jobs, internships and scholarships alike: design and
+construction engineering (dams, reservoirs, drainage, irrigation schemes, water
+networks); government and agency roles (ministries, NIHSA, river basin authorities,
+state water boards); WASH and humanitarian delivery; hydrology, flood forecasting
+and early warning; environmental compliance, EIA and pollution control; water and
+wastewater treatment and utility operations; research institutes and academia
+(IWMI, IITA, universities); and climate adaptation programmes.
+
 ## Step 1 — Hard rules (no points, just in or out)
 
 A listing is **dropped immediately** if:
