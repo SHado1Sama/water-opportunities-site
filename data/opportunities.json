@@ -103,32 +103,6 @@
     "verified_date": "2026-11-09"
   },
   {
-    "deadline": "2026-11-10",
-    "eligibility": "Young climate leaders aged 20-30 already active in climate policy, advocacy or entrepreneurship, with a specific initiative (policy proposal, campaign or venture); good command of English; available for the online phase (Dec 2026-Feb 2027) and the Brussels week (28 Feb-6 Mar 2027). Open worldwide; Nigeria is explicitly among the welcomed countries.",
-    "experience": "Young leaders (aged 20-30, already active in climate work)",
-    "funding": "Funded - travel, visa and accommodation costs for the Brussels week are covered by the programme",
-    "id": "ceps-climate-leadership-programme-2027",
-    "location": "Online (Dec 2026-Feb 2027) + Brussels, Belgium (28 Feb-6 Mar 2027)",
-    "manual": true,
-    "organization": "Centre for European Policy Studies (CEPS) / Heinrich-Böll-Stiftung",
-    "region": "Global",
-    "score": 85,
-    "source": "Official CEPS call for applications",
-    "summary": "Eight young climate leaders join a Dec 2026-Mar 2027 programme: online masterclasses on EU climate governance, diplomacy and policy writing, then a funded week in Brussels including the CEPS Ideas Lab (4-5 March 2027). Nigeria is explicitly welcomed; apply with a CV, reference letter and the application questionnaire by 10 November 2026, 23:59 CET.",
-    "tags": [
-      "climate",
-      "climate change",
-      "climate policy",
-      "fellowship",
-      "leadership",
-      "fully funded"
-    ],
-    "title": "CEPS / Heinrich Böll Stiftung Climate Leadership Programme 2027",
-    "type": "fellowship",
-    "url": "https://www.ceps.eu/ceps-news/call-for-applications-climate-leadership-programme/",
-    "verified_date": "2026-11-09"
-  },
-  {
     "id": "capnet-iwrm-climate-resilience-course-2026",
     "title": "Integrated Water Resources Management (IWRM) for Climate Resilience, 2026 Edition",
     "organization": "Cap-Net UNDP / UNEP-DHI Centre",
@@ -276,32 +250,6 @@
     "verified_date": "2026-11-09"
   },
   {
-    "id": "energy-officer-ignite-energy-access",
-    "title": "Energy Officer",
-    "organization": "Ignite Energy Access",
-    "type": "job",
-    "region": "Nigeria",
-    "location": "Mokwa, Niger State",
-    "deadline": "2026-11-10",
-    "url": "https://www.hotnigerianjobs.com/hotjobs/983631/energy-officer-at-ignite-energy-access.html",
-    "summary": "Field role with a renewable energy company bringing solar home systems to off-grid communities: customer acquisition, product demonstrations, sales and payment follow-up across Mokwa and neighbouring communities.",
-    "eligibility": "Minimum OND/NCE; an HND or Bachelor's degree is an added advantage. Sales, marketing or field operations experience is an advantage, not a requirement. Must be willing to work in the field around Mokwa, Niger State.",
-    "experience": "Entry level (OND/NCE minimum)",
-    "funding": "Paid (salary plus performance incentives)",
-    "tags": [
-      "energy",
-      "renewable energy",
-      "solar",
-      "energy access",
-      "nigeria",
-      "job"
-    ],
-    "score": 74,
-    "manual": true,
-    "source": "HotNigerianJobs (employer advert, posted 30 Oct 2026)",
-    "verified_date": "2026-11-06"
-  },
-  {
     "id": "ibci-blue-carbon-fellowship-2027",
     "title": "International Blue Carbon Institute (IBCI) Fellowship Program 2027",
     "organization": "International Blue Carbon Institute (IBCI) / Conservation International",
@@ -326,6 +274,32 @@
     "manual": true,
     "source": "Opportunity Desk (links to the official IBCI page at Conservation International)",
     "verified_date": "2026-11-06"
+  },
+  {
+    "deadline": "2026-12-04",
+    "eligibility": "Bachelor's degree in Agricultural, Water Resources, Irrigation or Civil Engineering (or related), minimum 10 years of relevant professional engineering experience, and valid COREN registration (or equivalent). Proven irrigation design, hydraulic calculations, pumping systems and agricultural drainage experience.",
+    "experience": "Senior (10 years, COREN required)",
+    "funding": "Paid job (salary, described as very competitive)",
+    "id": "senior-irrigation-engineer-kannyvic-delta-kano",
+    "location": "Delta and Kano, Nigeria (Delta-based candidates travel to project sites)",
+    "manual": true,
+    "organization": "KannyVic Enterprise Consult",
+    "region": "Nigeria",
+    "score": 74,
+    "source": "OmaDaily (employer advert, application via Google Form)",
+    "summary": "Senior design and supervision role at an agribusiness and climate-smart infrastructure company: lead planning, engineering design, construction supervision, testing and commissioning of agricultural water projects, including irrigation schemes (drip, sprinkler, surface), dams, reservoirs, water storage and distribution, agricultural drainage and stormwater systems. Software named in the advert includes AutoCAD, Civil 3D, EPANET, HEC-RAS, CROPWAT and GIS. Senior level: it asks for 10 years of experience and COREN registration, so it suits established engineers rather than fresh graduates.",
+    "tags": [
+      "water engineering",
+      "irrigation",
+      "design",
+      "infrastructure",
+      "nigeria",
+      "job"
+    ],
+    "title": "Senior Agricultural & Water Infrastructure / Irrigation Engineer",
+    "type": "job",
+    "url": "https://omadaily.com/senior-agricultural-water-infrastructure-irrigation-engineer-at-kannyvic-enterprise-consult/",
+    "verified_date": "2026-11-11"
   },
   {
     "id": "gwp-transboundary-freshwater-security-mooc",
@@ -501,31 +475,5 @@
     "type": "job",
     "url": "https://jobs.unicef.org/en-us/job/596824/wash-specialist-no3-ta-364-days-138986kaduna-nigeria-wcar",
     "verified_date": "2026-11-09"
-  },
-  {
-    "deadline": "2026-12-04",
-    "eligibility": "Bachelor's degree in Agricultural, Water Resources, Irrigation or Civil Engineering (or related), minimum 10 years of relevant professional engineering experience, and valid COREN registration (or equivalent). Proven irrigation design, hydraulic calculations, pumping systems and agricultural drainage experience.",
-    "experience": "Senior (10 years, COREN required)",
-    "funding": "Paid job (salary, described as very competitive)",
-    "id": "senior-irrigation-engineer-kannyvic-delta-kano",
-    "location": "Delta and Kano, Nigeria (Delta-based candidates travel to project sites)",
-    "manual": true,
-    "organization": "KannyVic Enterprise Consult",
-    "region": "Nigeria",
-    "score": 74,
-    "source": "OmaDaily (employer advert, application via Google Form)",
-    "summary": "Senior design and supervision role at an agribusiness and climate-smart infrastructure company: lead planning, engineering design, construction supervision, testing and commissioning of agricultural water projects, including irrigation schemes (drip, sprinkler, surface), dams, reservoirs, water storage and distribution, agricultural drainage and stormwater systems. Software named in the advert includes AutoCAD, Civil 3D, EPANET, HEC-RAS, CROPWAT and GIS. Senior level: it asks for 10 years of experience and COREN registration, so it suits established engineers rather than fresh graduates.",
-    "tags": [
-      "water engineering",
-      "irrigation",
-      "design",
-      "infrastructure",
-      "nigeria",
-      "job"
-    ],
-    "title": "Senior Agricultural & Water Infrastructure / Irrigation Engineer",
-    "type": "job",
-    "url": "https://omadaily.com/senior-agricultural-water-infrastructure-irrigation-engineer-at-kannyvic-enterprise-consult/",
-    "verified_date": "2026-11-11"
   }
 ]
