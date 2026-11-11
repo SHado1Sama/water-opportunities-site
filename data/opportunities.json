@@ -501,5 +501,31 @@
     "type": "job",
     "url": "https://jobs.unicef.org/en-us/job/596824/wash-specialist-no3-ta-364-days-138986kaduna-nigeria-wcar",
     "verified_date": "2026-11-09"
+  },
+  {
+    "deadline": "2026-12-04",
+    "eligibility": "Bachelor's degree in Agricultural, Water Resources, Irrigation or Civil Engineering (or related), minimum 10 years of relevant professional engineering experience, and valid COREN registration (or equivalent). Proven irrigation design, hydraulic calculations, pumping systems and agricultural drainage experience.",
+    "experience": "Senior (10 years, COREN required)",
+    "funding": "Paid job (salary, described as very competitive)",
+    "id": "senior-irrigation-engineer-kannyvic-delta-kano",
+    "location": "Delta and Kano, Nigeria (Delta-based candidates travel to project sites)",
+    "manual": true,
+    "organization": "KannyVic Enterprise Consult",
+    "region": "Nigeria",
+    "score": 74,
+    "source": "OmaDaily (employer advert, application via Google Form)",
+    "summary": "Senior design and supervision role at an agribusiness and climate-smart infrastructure company: lead planning, engineering design, construction supervision, testing and commissioning of agricultural water projects, including irrigation schemes (drip, sprinkler, surface), dams, reservoirs, water storage and distribution, agricultural drainage and stormwater systems. Software named in the advert includes AutoCAD, Civil 3D, EPANET, HEC-RAS, CROPWAT and GIS. Senior level: it asks for 10 years of experience and COREN registration, so it suits established engineers rather than fresh graduates.",
+    "tags": [
+      "water engineering",
+      "irrigation",
+      "design",
+      "infrastructure",
+      "nigeria",
+      "job"
+    ],
+    "title": "Senior Agricultural & Water Infrastructure / Irrigation Engineer",
+    "type": "job",
+    "url": "https://omadaily.com/senior-agricultural-water-infrastructure-irrigation-engineer-at-kannyvic-enterprise-consult/",
+    "verified_date": "2026-11-11"
   }
 ]
