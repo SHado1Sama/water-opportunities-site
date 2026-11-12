@@ -179,33 +179,6 @@
     "verified_date": "2026-11-09"
   },
   {
-    "deadline": null,
-    "eligibility": "Open to everyone worldwide; free audit enrolment on edX.",
-    "experience": "Advanced",
-    "funding": "Free to audit (paid verified certificate optional; an Esri ArcGIS licence may be needed for some exercises)",
-    "id": "purdue-computational-watershed-hydrology-edx",
-    "location": "Online",
-    "manual": true,
-    "organization": "Purdue University (PurdueX), via edX",
-    "region": "Global",
-    "score": 84,
-    "source": "edX (official course page, PurdueX)",
-    "summary": "Free-to-audit edX course from Purdue University (16 weeks, about 5 hours a week) on hydrologic analysis and modelling with real observations and geospatial data: DEM, land use, soil, streamflow and precipitation processed in GIS, then built into HEC-HMS, HEC-RAS and SWAT models, with interpretation of results for water movement and availability. The closest course on the board to the HEC-HMS/HEC-RAS workflow itself; only the optional verified certificate is paid.",
-    "tags": [
-      "hec-hms",
-      "hec-ras",
-      "swat",
-      "hydrology",
-      "watershed",
-      "gis",
-      "modelling"
-    ],
-    "title": "Computational Watershed Hydrology",
-    "type": "course",
-    "url": "https://www.edx.org/learn/engineering/purdue-university-computational-watershed-hydrology",
-    "verified_date": "2026-11-12"
-  },
-  {
     "deadline": "2026-11-15",
     "eligibility": "Postgraduate students, final-year bachelor's students, or graduates who can start within one year of graduating. Environmental, water-resource or development studies are desirable; English proficiency required.",
     "experience": "Student / recent graduate",
