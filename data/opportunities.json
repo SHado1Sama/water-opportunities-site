@@ -103,6 +103,58 @@
     "verified_date": "2026-11-09"
   },
   {
+    "deadline": "2026-11-15",
+    "eligibility": "Bachelor's degree in a relevant subject plus at least 2 years of relevant professional experience; applicants must be from a DAC-listed country (Nigeria qualifies) and generally work for a public authority or a company in a developing country. Compulsory third-semester exchange at the German Jordanian University in Jordan and a Master's thesis focused on a MENA region.",
+    "experience": "Mid-career (Bachelor's + 2 years professional experience)",
+    "funding": "Fully funded - DAAD EPOS scholarship (EUR 992/month for graduates, plus insurance and travel allowance)",
+    "id": "daad-epos-iwrm-mena-2027",
+    "location": "Cologne, Germany and Amman, Jordan (TH Koln / German Jordanian University)",
+    "manual": true,
+    "organization": "DAAD / TH Koln - University of Applied Sciences (with German Jordanian University)",
+    "region": "Global",
+    "score": 88,
+    "source": "Official TH Koln programme page (DAAD EPOS)",
+    "summary": "DAAD EPOS full scholarship for the MSc in Integrated Water Resources Management - MENA at TH Koln, with a compulsory semester at the German Jordanian University in Amman. Built around water-resource challenges in the Middle East and North Africa, with a thesis focused on a MENA region. Nigerians qualify as a DAC-listed country, but you need at least two years of relevant professional experience and to be working in the water or development sector. No application fee; scholarship applications close 15 November 2026.",
+    "tags": [
+      "water resources",
+      "iwrm",
+      "masters",
+      "fully funded",
+      "daad",
+      "mena"
+    ],
+    "title": "DAAD EPOS Scholarship - MSc Integrated Water Resources Management, MENA (IWRM-MENA)",
+    "type": "scholarship",
+    "url": "https://www.th-koeln.de/en/spatial-development-and-infrastructure-systems/integrated-water-resources-management-mena-masters-program--scholarships_108717.php",
+    "verified_date": "2026-11-12"
+  },
+  {
+    "deadline": "2026-11-13",
+    "eligibility": "Nigerian postgraduate students currently enrolled in Nigerian universities (exceptionally, Nigerians studying abroad); Master's students under 30 and PhD students under 35 by 2 January 2026. Apply to the Environment team (Impact Assessment and Environmental Compliance Monitoring) or the Oil Spill Response team (Ground Water Remediation).",
+    "experience": "Postgraduate student (Master's/PhD, currently enrolled)",
+    "funding": "Not stated in the advert (12-month research internship)",
+    "id": "nnpc-spdc-postgraduate-research-internship-2026",
+    "location": "Nigeria (SPDC locations)",
+    "manual": true,
+    "organization": "Shell Petroleum Development Company of Nigeria (SPDC) / NNPC JV",
+    "region": "Nigeria",
+    "score": 86,
+    "source": "MedianGR (full advert; apply by email to SPDC)",
+    "summary": "Twelve-month, non-renewable postgraduate research internship with SPDC (operator of the NNPC/SPDC/TotalEnergies/NAOC joint venture). The Environment team covers impact assessment and environmental compliance monitoring, and the Oil Spill Response team covers groundwater remediation, both directly on-field for water and environmental engineers. Apply by email with a CV and a 3-page summary of your postgraduate research programme. Application is entirely free of charge; closes 13 November 2026.",
+    "tags": [
+      "internship",
+      "environmental compliance",
+      "groundwater",
+      "research",
+      "nigeria",
+      "oil spill"
+    ],
+    "title": "NNPC/SPDC JV Postgraduate Research Internship Programme 2026 (Environment and Groundwater Remediation)",
+    "type": "internship",
+    "url": "https://www.mediangr.com.ng/jobs/internships/nnpc-spdc-jv-postgraduate-research-internship/27839/",
+    "verified_date": "2026-11-12"
+  },
+  {
     "id": "capnet-iwrm-climate-resilience-course-2026",
     "title": "Integrated Water Resources Management (IWRM) for Climate Resilience, 2026 Edition",
     "organization": "Cap-Net UNDP / UNEP-DHI Centre",
@@ -125,6 +177,33 @@
     ],
     "manual": true,
     "verified_date": "2026-11-09"
+  },
+  {
+    "deadline": null,
+    "eligibility": "Open to everyone worldwide; free audit enrolment on edX.",
+    "experience": "Advanced",
+    "funding": "Free to audit (paid verified certificate optional; an Esri ArcGIS licence may be needed for some exercises)",
+    "id": "purdue-computational-watershed-hydrology-edx",
+    "location": "Online",
+    "manual": true,
+    "organization": "Purdue University (PurdueX), via edX",
+    "region": "Global",
+    "score": 84,
+    "source": "edX (official course page, PurdueX)",
+    "summary": "Free-to-audit edX course from Purdue University (16 weeks, about 5 hours a week) on hydrologic analysis and modelling with real observations and geospatial data: DEM, land use, soil, streamflow and precipitation processed in GIS, then built into HEC-HMS, HEC-RAS and SWAT models, with interpretation of results for water movement and availability. The closest course on the board to the HEC-HMS/HEC-RAS workflow itself; only the optional verified certificate is paid.",
+    "tags": [
+      "hec-hms",
+      "hec-ras",
+      "swat",
+      "hydrology",
+      "watershed",
+      "gis",
+      "modelling"
+    ],
+    "title": "Computational Watershed Hydrology",
+    "type": "course",
+    "url": "https://www.edx.org/learn/engineering/purdue-university-computational-watershed-hydrology",
+    "verified_date": "2026-11-12"
   },
   {
     "deadline": "2026-11-15",
@@ -151,6 +230,56 @@
     "verified_date": "2026-11-06"
   },
   {
+    "deadline": "2026-11-15",
+    "eligibility": "Open to water-sector stakeholders worldwide; no previous knowledge of water pollution management required.",
+    "experience": "All levels",
+    "funding": "Free (certificate included)",
+    "id": "unepdhi-water-pollution-management-2026",
+    "location": "Online",
+    "manual": true,
+    "organization": "UNEP-DHI Centre / Cap-Net UNDP",
+    "region": "Global",
+    "score": 82,
+    "source": "UNEP-DHI Centre (official course page)",
+    "summary": "Free, self-paced online course (five modules) on managing water pollution to meet SDG target 6.3: pollution drivers and impacts, water-quality guidelines and standards, pollution management as part of IWRM, enabling environment and financing, and plastic pollution in freshwater. Certificate on completing all modules and contributing to the discussion forums. Enrolment closes 15 November 2026.",
+    "tags": [
+      "water quality",
+      "water pollution",
+      "wastewater",
+      "sdg 6",
+      "iwrm"
+    ],
+    "title": "Water Pollution Management in Achieving SDG Target 6.3, 2026 Edition",
+    "type": "course",
+    "url": "https://unepdhi.org/2026-edition-online-course-on-water-pollution-management-in-achieving-sdg-target-6-3/",
+    "verified_date": "2026-11-12"
+  },
+  {
+    "deadline": "2026-11-15",
+    "eligibility": "Open to everyone worldwide; basic knowledge of climate change and the water cycle expected. Available in English and French.",
+    "experience": "Intermediate",
+    "funding": "Free (certificate included)",
+    "id": "unepdhi-integrated-drought-management-2026",
+    "location": "Online",
+    "manual": true,
+    "organization": "UNEP-DHI Centre / Integrated Drought Management Programme (IDMP), WMO, Cap-Net UNDP",
+    "region": "Global",
+    "score": 82,
+    "source": "UNEP-DHI Centre (official course page)",
+    "summary": "Free, self-paced online course (four modules, in English and French) on the three pillars of proactive drought management: monitoring and early warning, vulnerability and impact assessment, and preparedness, mitigation and response. Covers drought indices and indicators, forecasting tools and regional case studies, with a focus on monitoring and early warning, directly adjacent to flood and drought forecasting work. Certificate on completion. Enrolment closes 15 November 2026.",
+    "tags": [
+      "drought",
+      "early warning",
+      "climate adaptation",
+      "monitoring",
+      "water resources"
+    ],
+    "title": "Integrated Drought Management: Monitoring and Early Warning, 2026 Edition",
+    "type": "course",
+    "url": "https://unepdhi.org/2026-edition-online-course-on-integrated-drought-management-en-fr/",
+    "verified_date": "2026-11-12"
+  },
+  {
     "id": "qgis-official-training-manual",
     "title": "QGIS Training Manual (Official Self-Study Course)",
     "organization": "QGIS Project (QGIS.org)",
@@ -173,6 +302,56 @@
     ],
     "manual": true,
     "verified_date": "2026-11-09"
+  },
+  {
+    "deadline": "2026-11-15",
+    "eligibility": "Open to anyone worldwide; aimed at lake and water professionals in middle management.",
+    "experience": "Intermediate",
+    "funding": "Free (certificate included)",
+    "id": "unepdhi-sustainable-lake-management-2026",
+    "location": "Online",
+    "manual": true,
+    "organization": "UNEP-DHI Centre / UNEP, Cap-Net, ILEC",
+    "region": "Global",
+    "score": 80,
+    "source": "UNEP-DHI Centre (official course page)",
+    "summary": "Free, self-paced online course (five modules) on sustainable lake management: the fundamentals of SLM, Integrated Lake Basin Management, baseline assessment, monitoring and evaluation, institutions and stakeholder engagement, and implementation and financing of participatory lake recovery plans. Certificate on completion. Enrolment closes 15 November 2026.",
+    "tags": [
+      "lakes",
+      "water resources",
+      "ecosystems",
+      "transboundary waters"
+    ],
+    "title": "Sustainable Lake Management, 2026 Edition",
+    "type": "course",
+    "url": "https://unepdhi.org/2026-edition-online-course-on-sustainable-lake-management/",
+    "verified_date": "2026-11-12"
+  },
+  {
+    "deadline": "2026-11-20",
+    "eligibility": "Bachelor's degree or ongoing studies in Public Health, Environmental Science, Project Management, Community Development, Social Sciences, Geography, Development Studies or a related field; demonstrated interest in WASH, environmental sustainability or public health. Field-based role across Lagos State.",
+    "experience": "Student / recent graduate (entry level)",
+    "funding": "Not stated (internship; see advert)",
+    "id": "ogf-field-intern-community-identification-lagos",
+    "location": "Lagos, Nigeria",
+    "manual": true,
+    "organization": "Optimal Greening Foundation (OGF)",
+    "region": "Nigeria",
+    "score": 80,
+    "source": "Hot Nigerian Jobs (full employer advert)",
+    "summary": "Field internship with a Nigerian WASH and renewable-energy nonprofit: identify and assess underserved communities across Lagos State for future WASH and environmental sustainability programmes, engage community leaders and government institutions, conduct preliminary WASH needs assessments and field visits, and document findings. A hands-on, entry-level route into WASH delivery work. Closes 20 November 2026.",
+    "tags": [
+      "wash",
+      "sanitation",
+      "internship",
+      "lagos",
+      "nigeria",
+      "field work"
+    ],
+    "title": "Field Intern - Community Identification (WASH)",
+    "type": "internship",
+    "url": "https://www.hotnigerianjobs.com/hotjobs/984596/field-intern-community-identification-at-optimal-g.html",
+    "verified_date": "2026-11-12"
   },
   {
     "id": "ihe-delft-python-geospatial-wapor-mooc",
@@ -223,6 +402,31 @@
     "type": "job",
     "url": "https://www.hotnigerianjobs.com/hotjobs/973201/water-and-irrigation-engineer-at-kannyvic-enterpri.html",
     "verified_date": "2026-11-06"
+  },
+  {
+    "deadline": "2026-11-15",
+    "eligibility": "Open to water-sector stakeholders worldwide; no previous knowledge of gender or its interactions with water required.",
+    "experience": "All levels",
+    "funding": "Free (certificate included)",
+    "id": "unepdhi-gender-iwrm-2026",
+    "location": "Online",
+    "manual": true,
+    "organization": "UNEP-DHI Centre / Cap-Net UNDP / Gender and Water Alliance / GWP",
+    "region": "Global",
+    "score": 78,
+    "source": "UNEP-DHI Centre (official course page)",
+    "summary": "Free, self-paced online course (six modules) on gender and IWRM, guided by the 'Why Gender Matters in IWRM' training manual: gender mainstreaming in water management, gender, water and climate change, gender, water and sanitation, inclusive decision making, and gender-disaggregated data. Certificate on completion. Enrolment closes 15 November 2026.",
+    "tags": [
+      "iwrm",
+      "gender",
+      "water governance",
+      "wash",
+      "climate change"
+    ],
+    "title": "Gender and Integrated Water Resources Management (IWRM), 2026 Edition",
+    "type": "course",
+    "url": "https://unepdhi.org/2026-edition-online-course-on-gender-and-integrated-water-resources-management-iwrm/",
+    "verified_date": "2026-11-12"
   },
   {
     "id": "ihe-delft-introduction-to-wapor-v3-course",
