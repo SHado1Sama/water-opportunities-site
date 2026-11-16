@@ -53,6 +53,58 @@
     "verified_date": "2026-11-06"
   },
   {
+    "deadline": "2027-02-28",
+    "eligibility": "Non-Chinese citizens; Master's applicants need a bachelor's degree and be under 35, PhD applicants a master's and under 40; English-taught programmes include Groundwater Science and Engineering and Environmental Science and Engineering; IELTS 6.0 / TOEFL 80 or proof the previous degree was taught in English; a signed supervisor recommendation form is required, so contact a CUG professor early.",
+    "experience": "Student / recent graduate (Master's or PhD entry)",
+    "funding": "Fully funded — tuition waived, free on-campus accommodation, stipend RMB 3,000/month (Master's) or 3,500/month (PhD), plus RMB 800/year insurance",
+    "id": "csc-cugw-scholarship-2027",
+    "location": "Wuhan, China",
+    "manual": true,
+    "organization": "China University of Geosciences (Wuhan) / Chinese Government Scholarship (CSC)",
+    "region": "Global",
+    "score": 90,
+    "source": "CUG 2027 CSC High-Level Postgraduate Program notice, via Marwat Speaks and DAADScholarship.com records; no application fee confirmed",
+    "summary": "Fully funded Chinese Government Scholarship (High-Level Postgraduate Program, Type B, agency code 10491) for Master's and PhD study at China University of Geosciences, Wuhan. English-taught options include Groundwater Science and Engineering and Environmental Science and Engineering. Apply only on the CSC portal; no application fee and no separate CUG application.",
+    "tags": [
+      "groundwater",
+      "scholarship",
+      "fully funded",
+      "masters",
+      "phd",
+      "environmental engineering"
+    ],
+    "title": "CSC Scholarship — China University of Geosciences (Wuhan) 2027 (Groundwater Science and Engineering)",
+    "type": "scholarship",
+    "url": "https://www.campuschina.org",
+    "verified_date": "2026-11-16"
+  },
+  {
+    "deadline": "2027-08-01",
+    "eligibility": "Open to international candidates from any country, including Nigeria; completed undergraduate degree in a related field; 2 years of relevant professional experience preferred (not essential for programme entry but strengthens the scholarship application); must hold a full offer of admission into the Master of Catchment Science and meet Griffith English requirements.",
+    "experience": "Student / recent graduate (Master's entry); 2 years relevant experience preferred",
+    "funding": "Full tuition — AU$56,000 for the 2-year Master of Catchment Science (2 awards); visa, health cover, travel, accommodation and living costs not covered",
+    "id": "iwc-master-catchment-science-scholarship",
+    "location": "Brisbane, Australia (Griffith University)",
+    "manual": true,
+    "organization": "International WaterCentre (IWC) / Griffith University",
+    "region": "Global",
+    "score": 90,
+    "source": "StudyQA scholarship record (IWC / Griffith University); terms corroborated by IWC's published scholarship terms",
+    "summary": "Two full-tuition scholarships (AU$56,000 each) from the International WaterCentre for international candidates to study the Master of Catchment Science at Griffith University, Brisbane — hydrology, catchment modelling, GIS and remote sensing, waterway restoration and river basin management. Course starts February (Trimester 1).",
+    "tags": [
+      "catchment science",
+      "water resources",
+      "hydrology",
+      "watershed",
+      "fully funded",
+      "masters"
+    ],
+    "title": "IWC Scholarships — Master of Catchment Science (Water Resources), Griffith University",
+    "type": "scholarship",
+    "url": "https://studyqa.com/scholarships/view/615",
+    "verified_date": "2026-11-16"
+  },
+  {
     "deadline": "2026-11-15",
     "eligibility": "Bachelor's degree in a relevant subject plus at least 2 years of relevant professional experience; applicants must be from a DAC-listed country (Nigeria qualifies) and generally work for a public authority or a company in a developing country. Compulsory third-semester exchange at the German Jordanian University in Jordan and a Master's thesis focused on a MENA region.",
     "experience": "Mid-career (Bachelor's + 2 years professional experience)",
@@ -101,6 +153,31 @@
     ],
     "manual": true,
     "verified_date": "2026-11-09"
+  },
+  {
+    "deadline": "2026-11-30",
+    "eligibility": "Fresh graduate in Electrical Engineering, Electronics Engineering or a closely related field; bachelor's degree or HND; valid NYSC discharge or exemption certificate.",
+    "experience": "Entry level / fresh graduate",
+    "funding": "Paid role (full-time, onsite); structured training and mentorship on solar and renewable energy projects",
+    "id": "paras-energy-graduate-trainee-2026",
+    "location": "Nigeria (placements across the country)",
+    "manual": true,
+    "organization": "Paras Energy",
+    "region": "Nigeria",
+    "score": 84,
+    "source": "Study in Naija (full advert, official application form linked)",
+    "summary": "Graduate Trainee Programme for fresh Electrical/Electronics Engineering graduates at Paras Energy, focused on solar and renewable energy projects, with structured training, mentorship and hands-on project work. Full-time and onsite, with placements across Nigeria.",
+    "tags": [
+      "renewable energy",
+      "solar energy",
+      "graduate trainee",
+      "entry level",
+      "energy"
+    ],
+    "title": "Paras Energy Graduate Trainee Programme 2026 (Renewable Energy)",
+    "type": "graduate-trainee",
+    "url": "https://www.studyinnaija.com/2026/11/paras-energy-graduate-trainee-programme.html",
+    "verified_date": "2026-11-16"
   },
   {
     "deadline": "2026-11-15",
@@ -301,6 +378,31 @@
     "verified_date": "2026-11-12"
   },
   {
+    "deadline": null,
+    "eligibility": "Open to learners worldwide; aimed at policymakers, technical staff, researchers, practitioners and students.",
+    "experience": "All levels",
+    "funding": "Free (digital badge on passing the final exam with at least 75%)",
+    "id": "fao-wefe-nexus-agriculture-course",
+    "location": "Online",
+    "manual": true,
+    "organization": "FAO elearning Academy",
+    "region": "Global",
+    "score": 77,
+    "source": "FAO elearning Academy (official course page)",
+    "summary": "Free six-lesson FAO course on integrated water-energy-food-ecosystem (WEFE) nexus management in agriculture: water security, water-use efficiency, climate change adaptation and mitigation, and cross-sector collaboration. Self-paced, with a digital badge on passing the final exam.",
+    "tags": [
+      "wefe nexus",
+      "water security",
+      "climate adaptation",
+      "agriculture",
+      "water resources"
+    ],
+    "title": "The Water-Energy-Food-Ecosystem Nexus in Agriculture (FAO elearning Academy)",
+    "type": "course",
+    "url": "https://elearning.fao.org/course/view.php?id=1438",
+    "verified_date": "2026-11-16"
+  },
+  {
     "id": "ihe-delft-introduction-to-wapor-v3-course",
     "title": "Introduction to WaPOR v3",
     "organization": "IHE Delft Institute for Water Education (OpenCourseWare)",
@@ -426,6 +528,31 @@
     "verified_date": "2026-11-09"
   },
   {
+    "deadline": null,
+    "eligibility": "Open to anyone, from any country; suited to water, environment and policy students, practitioners and public servants.",
+    "experience": "All levels",
+    "funding": "Free (individual course certificates and diploma on completion)",
+    "id": "informea-diploma-freshwater-resources",
+    "location": "Online",
+    "manual": true,
+    "organization": "UN InforMEA E-learning Platform (UNEP and partners)",
+    "region": "Global",
+    "score": 72,
+    "source": "UN InforMEA E-learning Platform (official platform); programme record via ApplyNOW / Opportunity Lab",
+    "summary": "Free, self-paced UN diploma pathway on the international legal framework for freshwater resources: three short courses on the Ramsar Convention on Wetlands, a pollution-free planet, and freshwater law. Complete all three for the certificates and the downloadable diploma.",
+    "tags": [
+      "freshwater",
+      "water law",
+      "wetlands",
+      "pollution",
+      "water governance"
+    ],
+    "title": "UN InforMEA Diploma on the International Legal Framework on Freshwater Resources",
+    "type": "course",
+    "url": "https://elearning.informea.org/",
+    "verified_date": "2026-11-16"
+  },
+  {
     "id": "unesco-sciences-internship-2026",
     "title": "UNESCO Sciences Internship 2026 (Climate, Sustainability & Science)",
     "organization": "UNESCO",
@@ -474,6 +601,31 @@
     ],
     "manual": true,
     "verified_date": "2026-11-09"
+  },
+  {
+    "deadline": null,
+    "eligibility": "Open enrolment; no mandatory qualification or previous experience; aimed at government officials, NGO staff, academics, researchers and water professionals.",
+    "experience": "All levels",
+    "funding": "Free",
+    "id": "unitar-foundations-sdg6-course",
+    "location": "Online",
+    "manual": true,
+    "organization": "UNITAR Global Water Academy",
+    "region": "Global",
+    "score": 70,
+    "source": "UNITAR Course Catalogue record via Opportunities Feed (course listed at $0.00, open enrolment)",
+    "summary": "Free, self-paced UNITAR course (about 15 hours) introducing SDG 6 across eight modules: safe drinking water, sanitation and hygiene, water quality and pollution control, water-use efficiency, integrated water resources management, ecosystem protection, international cooperation and community engagement. Certificate status not confirmed in the catalogue record.",
+    "tags": [
+      "sdg 6",
+      "water",
+      "sanitation",
+      "water quality",
+      "iwrm"
+    ],
+    "title": "Foundations of SDG 6: Clean Water and Sanitation (UNITAR)",
+    "type": "course",
+    "url": "https://opportunitiesfeed.com/2026/10/17/free-online-course-2/",
+    "verified_date": "2026-11-16"
   },
   {
     "id": "officially-green-global-fellowship-2027",
