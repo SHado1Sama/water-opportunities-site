@@ -37,7 +37,9 @@
     "environmental impact assessment",
     "water utility",
     "effluent",
-    "water research"
+    "water research",
+    "biogas",
+    "anaerobic digestion"
   ],
   "hard_rules": {
     "application_fee_phrases": [
@@ -67,7 +69,8 @@
       "waste",
       "renewable",
       "recycling",
-      "carbon"
+      "carbon",
+      "biogas"
     ]
   },
   "notes": "Scoring is a ranking aid for a student audience, not an eligibility guarantee. Always open the original listing and check the official eligibility, deadline and location before applying. Legitimate employers and scholarship bodies do not charge application fees.",
