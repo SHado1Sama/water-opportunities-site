@@ -230,6 +230,33 @@
     "verified_date": "2026-11-16"
   },
   {
+    "deadline": null,
+    "eligibility": "The advert addresses students looking for hands-on experience in water and environmental engineering; it states no enrolment or nationality requirement. On-site in Kuala Lumpur; no remote option stated.",
+    "experience": "Student / recent graduate (entry level)",
+    "funding": "Not stated (internship; see advert)",
+    "id": "gwc-engineering-internship-malaysia-2026",
+    "location": "Kuala Lumpur, Malaysia",
+    "manual": true,
+    "organization": "Global Water Consultants Sdn Bhd (GWC)",
+    "region": "Global",
+    "score": 77,
+    "source": "Global Water Consultants LinkedIn post (official company page)",
+    "summary": "Internships with a Malaysian water engineering consultancy (est. 2006, 680+ projects) across five departments: Hydraulics, Hydrology, Water Quality, Coastal and GIS. Practical exposure to real engineering projects with mentorship from experienced professionals. Apply by emailing your CV to career@gwc.com.my. No deadline was stated in the advert; apply promptly.",
+    "tags": [
+      "hydrology",
+      "hydraulics",
+      "water quality",
+      "coastal",
+      "gis",
+      "internship",
+      "malaysia"
+    ],
+    "title": "Engineering Internship: Hydrology, Hydraulics, Water Quality, Coastal and GIS",
+    "type": "internship",
+    "url": "https://lnkd.in/p/ehK-mrwW",
+    "verified_date": "2026-11-18"
+  },
+  {
     "id": "ihe-delft-introduction-to-wapor-v3-course",
     "title": "Introduction to WaPOR v3",
     "organization": "IHE Delft Institute for Water Education (OpenCourseWare)",
